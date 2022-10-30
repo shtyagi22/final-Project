@@ -7,6 +7,8 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const commentsRouter = require('./routes/comments');
 const postsRouter = require('./routes/posts');
+const postCommentsRouter = require('./routes/postComments');
+
 
 
 const { request } = require('express');
@@ -26,6 +28,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/comments', commentsRouter);
 app.use('/posts', postsRouter);
+app.use('/postComments', postCommentsRouter);
+
 
 
 const APP_id = "e7215228";
