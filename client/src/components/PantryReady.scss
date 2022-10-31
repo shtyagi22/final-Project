@@ -1,0 +1,97 @@
+.pantry_ready{
+
+  width: 800px;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+.pantry_ready h1{
+ margin-bottom: 30px;
+ margin-top: 50px;
+ font-size: 50px;
+ 
+}
+.pantry_ready section{
+padding-left: 50px;
+}
+.pantry_search_container{
+  padding-left: 50px;
+  }
+.pantry_ready p{
+  line-height: 2.1;
+  font-weight: lighter;
+}
+
+
+.search_pantry{
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+  height: 60px;
+  border-radius: 60px;
+  border: none;
+  box-shadow: 0 0 8px  rgba(grey, 0.5);
+}
+
+.search_pantry input{
+  border: none;
+  background-color: transparent;
+  resize: none;
+  outline: none;
+  width: 250px;
+  height: 60px;
+  margin-left: 10px;
+  border-start-end-radius: 30px;
+  border-end-end-radius: 30px;
+  color: gray;
+  
+  }
+
+.search_pantry .pantry_add_icon{
+  color:rgba(58,131,120,255);
+  padding-top: 20px;
+  padding-left: 20px;
+  margin-left: 0px;
+}
+
+.search_result{
+  position: relative;
+  width: 100%;
+  max-width: 650px;
+  box-shadow: 0 0 8px  rgba(grey, 0.5);
+  border-radius: 10px;
+  height: 300px;
+}
+
+.search_result .search{
+  padding-top: 15px;
+  padding-left: 15px;
+  display: flex;
+  flex-direction: row;
+}
+
+.search_result .search .fa-magnifying-glass{
+  padding-right: 10px;
+  padding-top: 5px;
+}
+
+.search_result .search input{
+  width: 500px;
+  border: none;
+  outline: none;
+
+  color: gray;
+}
+
+.search_result .search button{
+  background-color: rgba(58,131,120,255) ;
+  border: none;
+  color: white;
+  right: 10px;
+  position: absolute;
+}
+
+.search_result .search input::placeholder{
+  opacity: 40%;
+  font-size: small;
+  font-weight: bold;
+}

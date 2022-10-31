@@ -1,8 +1,8 @@
 
-import "./SignUpLogIn.scss"
+import "./SignUpLogInButton.scss"
 import './App.scss';
 
-function SignUpLogIn() {
+function SignUpLogInButton() {
   return (
     <div className="sidebar--centered signup">
       Sign Up / Log in
@@ -11,4 +11,4 @@ function SignUpLogIn() {
 
 }
 
-export default SignUpLogIn;
+export default SignUpLogInButton;
