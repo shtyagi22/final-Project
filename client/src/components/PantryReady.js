@@ -1,30 +1,35 @@
 import { useEffect,useState } from "react";
 import "./PantryReady.scss"
+import PantryIngredientList from "./PantryIngredientList";
+
+import useLocalStorage from "../hooks/LocalStorageHook"
 
 function PantryReady(){
 
-  const [items, setItems] = useState([]);
-  const [inVal, setInVal] = useState('');
+  
   const [showResults, setShowResults] = useState(false)
+  const [input, setInput] = useState('')
+  const [ingredients, setIngredients] = useLocalStorage("ingredients", [])
 
-  useEffect(() => {
-    localStorage.setItem('items', JSON.stringify(items));
-  }, [items]);
+  
 
-  useEffect(() => {
-    const items = JSON.parse(localStorage.getItem('items'));
-    if (items) {
-     setItems(items);
-    }
-  }, []);
+  const onClickShowIngredients = () => setShowResults(true)
 
-  const handleInput = () =>{
-    console.log(inVal)
+  const addIngredient =(event,ing)=>{
+    event.preventDefault();
+    const nextId = ingredients.length > 0 ? Math.max(...ingredients.map((i) => i.id)) + 1 : 0;
+    const newIgredient = {id:nextId, ingredient:ing}
+    setIngredients([...ingredients,newIgredient])
+    setInput("")
+    
   }
 
-  const onClick = () => setShowResults(true)
-  console.log(showResults)
+  const removeIngredient = (id) =>{
+    const newIngredients = [...ingredients].filter(e => e.id !== id)
+    setIngredients(newIngredients)
+  }
 
+  console.log(ingredients)
   return(
     <div className="pantry_ready">
       <section>
@@ -33,21 +38,24 @@ function PantryReady(){
       </section>
       <section className="pantry_search_container">
         {!showResults &&
-          <section>
+          <div>
             <div className="search_pantry">
-              <div className="pantry_add_icon" onClick={handleInput}>
+              <div className="pantry_add_icon">
                 <i className="fa-solid fa-circle-plus"></i>
               </div>
               <div>
                 <form>
-                  <input type="text" onClick={onClick}></input>
+                  <input type="text" onClick={onClickShowIngredients}></input>
                 </form>
               </div>
             </div>
             <div className="pantry_ingredients">
-              
+              <span>YOUR PANTRY INGREDIENTS</span>
+              <div className="ingredients">
+                <PantryIngredientList ingredients={ingredients} OnCancel={removeIngredient}/>
+              </div>
             </div>
-          </section>
+          </div>
         }
 
         {
@@ -57,7 +65,9 @@ function PantryReady(){
             <div className="search">
               <i className="fa-solid fa-magnifying-glass"></i>
               <form>
-                <input type="text" onChange={(event)=>setInVal(event.target.value)} placeholder="Enter your ingredients"></input>
+                <input type="text" name="ingInput" value={input} onChange={(event)=>setInput(event.target.value)} placeholder="Enter your ingredients"></input>
+                <br/>
+                <button onClick={(event)=>addIngredient(event,input)}>Add</button>
               </form>
               <button className='btn_close' onClick={()=>setShowResults(false)}><i className="fa-solid fa-xmark"></i></button>
             </div> 

@@ -1,0 +1,20 @@
+.ingredient{
+  height: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 8px  rgba(grey, 0.5);
+  margin: 10px;
+  
+}
+
+.ingredient span {
+  padding: 10px;
+}
+.ingredient .fa-circle-xmark{
+  color: rgba(58,131,120,255) ;
+  cursor: pointer;
+}
+
+ul{
+  display: flex;
+  flex-wrap: wrap;
+}

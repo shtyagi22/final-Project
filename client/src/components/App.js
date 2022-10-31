@@ -7,9 +7,16 @@ import RecipeCard from './RecipeCard';
 import SignUpLogInPage from './SignUpLogInPage';
 import Post from './Post';
 import PantryReady from './PantryReady'
+import PantryIngredientList from './PantryIngredientList';
 
 function App() {
 
+  const ingredients = [
+    {id:1, ingredient:"Apple Juice"},
+    {id:2, ingredient:"Carrots"},
+    {id:3, ingredient:"Milk"}
+  ]
+  
   const [nav,setNav] = useState('');
 
   const navigate = (navigation) =>{
@@ -37,6 +44,7 @@ function App() {
       }
       {nav === "" && 
       <section className="schedule">
+        <PantryIngredientList ingredients={ingredients}/>
         <SearchBar/>
         <RecipeCard/>
         <SignUpLogInPage/>
