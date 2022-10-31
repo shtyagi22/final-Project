@@ -7,9 +7,9 @@ function Post(){
   const [showPicker, setShowPicker] = useState(false);
   const [fileState, setFileState] = useState({selectedFile:null,image:""})
 
-  const onEmojiClick = (event, emojiObject) => {
+  const onEmojiClick = (emojiObject, event) => {
     setInputStr(prevInput => prevInput + emojiObject.emoji);
-   
+  //  console.log("emoji Object", event, emojiObject)
     setShowPicker(false);
   };
 

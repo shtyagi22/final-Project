@@ -1,6 +1,7 @@
-import { useEffect,useState } from "react";
+import { useState } from "react";
 import "./PantryReady.scss"
 import PantryIngredientList from "./PantryIngredientList";
+import SuggestionList from "./SuggestionList";
 
 import useLocalStorage from "../hooks/LocalStorageHook"
 
@@ -35,7 +36,8 @@ function PantryReady(){
 
   const onClickShowIngredients = () => setShowResults(true)
 
-  const handleOnchange = (text) => {
+  const handleOnchange = (event,text) => {
+    event.preventDefault()
     let matches = [];
     if(text.length > 0){
       matches = ingredients_array.filter(ing => {
@@ -43,7 +45,7 @@ function PantryReady(){
         return ing.ingredient.match(regex)
       })
     }
-    setSuggestions(matches);
+    setSuggestions([...matches].slice(0,5));
 
     console.log(suggestions)
     setInput(text);
@@ -56,6 +58,10 @@ function PantryReady(){
     setIngredients([...ingredients,newIgredient])
     setInput("")
     
+  }
+
+  const addIng = (ing) => {
+    console.log(ing)
   }
 
   const removeIngredient = (id) =>{
@@ -102,12 +108,15 @@ function PantryReady(){
             <div className="search">
               <i className="fa-solid fa-magnifying-glass"></i>
               <form>
-                <input type="text" name="ingInput" value={input} onChange={(event)=>handleOnchange(event.target.value)} placeholder="Enter your ingredients"></input>
+                <input type="text" name="ingInput" value={input} onChange={(event)=>handleOnchange(event,event.target.value)} placeholder="Enter your ingredients"></input>
                 <br/>
-                <button onClick={(event)=>addIngredient(event,input)}>Add</button>
+                {/* <button onClick={(event)=>addIngredient(event,input)}>Add</button> */}
               </form>
               <button className='btn_close' onClick={()=>setShowResults(false)}><i className="fa-solid fa-xmark"></i></button>
             </div> 
+            <div className="suggestions">
+                <SuggestionList suggestedIngredients={suggestions} OnAdd={addIng}/>
+              </div>
           </div>
         }
       </section>

@@ -10,7 +10,7 @@ function PantryIngredientList(props){
   />)
 
   return(
-    <ul>
+    <ul className="pantry_ingredients_ul">
       {pantryIngredientList}
     </ul>
   )

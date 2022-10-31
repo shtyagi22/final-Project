@@ -1,7 +1,7 @@
 .pantry_ready{
 
   width: 800px;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+  
 }
 
 .pantry_ready h1{
@@ -125,4 +125,9 @@ padding-left: 50px;
 
 .ingredients button:disabled{
   background-color: rgb(202, 198, 198)  ;
+}
+
+.suggestions{
+  max-width: 250px;
+
 }
