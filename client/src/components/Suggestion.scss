@@ -1,0 +1,22 @@
+.suggested_ingredient{
+  height: 20px;
+  width: 100%;
+  margin: 10px;
+  font-size: 14px;
+}
+.suggested_ingredient:hover{
+  background-color:rgb(191, 187, 182);
+}
+
+.suggested_ingredient span {
+  padding: 10px;
+}
+.suggested_ingredient .fa-circle-plus{
+  color: rgba(58,131,120,255) ;
+  cursor: pointer;
+}
+
+ul{
+  display: flex;
+  flex-wrap: wrap;
+}

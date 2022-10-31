@@ -45,7 +45,11 @@ padding-left: 50px;
   color: gray;
   
   }
-
+  .search_pantry input::placeholder{
+    opacity: 40%;
+    font-size: small;
+    font-weight: bold;
+  }
 .search_pantry .pantry_add_icon{
   color:rgba(58,131,120,255);
   padding-top: 20px;
@@ -106,4 +110,19 @@ padding-left: 50px;
 .ingredients{
   padding-top: 20px;
   max-width: 600px;
+}
+
+.ingredients button{
+  margin-top: 20px;
+  padding: 10px 30px;
+  border-radius: 20px;
+  color: white;
+  border: none;
+  background-color: rgba(58,131,120,255) ;
+  font-size: 14px;
+  margin-left: 150px;
+}
+
+.ingredients button:disabled{
+  background-color: rgb(202, 198, 198)  ;
 }

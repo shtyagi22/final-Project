@@ -45,7 +45,7 @@ function PantryReady(){
               </div>
               <div>
                 <form>
-                  <input type="text" onClick={onClickShowIngredients}></input>
+                  <input type="text" onClick={onClickShowIngredients} placeholder="Enter your ingredients" ></input>
                 </form>
               </div>
             </div>
@@ -53,6 +53,9 @@ function PantryReady(){
               <span>YOUR PANTRY INGREDIENTS</span>
               <div className="ingredients">
                 <PantryIngredientList ingredients={ingredients} OnCancel={removeIngredient}/>
+                <div>
+                  <button disabled={ingredients.length === 0}>Search Pantry-Ready Recipes</button>
+                </div>
               </div>
             </div>
           </div>
