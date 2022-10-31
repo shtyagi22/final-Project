@@ -7,15 +7,18 @@ import RecipeCard from './RecipeCard';
 import SignUpLogInPage from './SignUpLogInPage';
 import Post from './Post';
 import PantryReady from './PantryReady'
-import PantryIngredientList from './PantryIngredientList';
+
+import CommentItem from './CommentItem';
 
 function App() {
 
-  const ingredients = [
-    {id:1, ingredient:"Apple Juice"},
-    {id:2, ingredient:"Carrots"},
-    {id:3, ingredient:"Milk"}
-  ]
+  const comment = {
+    image: "https://graph.facebook.com/10211597131705405/picture?height=180&width=180",
+    name: "Erica M.",
+    time: "2 years ago",
+    rating:2.7,
+    comment: "I agree with the other post about the dish needing more seasoning. I added additional seasoning but it still didn't do much for the flavor. The topping was also a little dry."
+  }
   
   const [nav,setNav] = useState('');
 
@@ -44,11 +47,12 @@ function App() {
       }
       {nav === "" && 
       <section className="schedule">
-        <PantryIngredientList ingredients={ingredients}/>
         <SearchBar/>
         <RecipeCard/>
         <SignUpLogInPage/>
         <Post/>
+
+        <CommentItem comment={comment}/>
         </section>
       }      
      

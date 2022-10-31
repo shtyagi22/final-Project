@@ -36,8 +36,7 @@ function PantryReady(){
 
   const onClickShowIngredients = () => setShowResults(true)
 
-  const handleOnchange = (event,text) => {
-    event.preventDefault()
+  const handleOnchange = (text) => {
     let matches = [];
     if(text.length > 0){
       matches = ingredients_array.filter(ing => {
@@ -51,17 +50,26 @@ function PantryReady(){
     setInput(text);
   }
 
-  const addIngredient =(event,ing)=>{
-    event.preventDefault();
+  const addIngredient =(ing)=>{
+
+    if(ingredients.find(e=>e.ingredient===ing)){
+      setInput("")
+      setSuggestions([])
+      return;
+    }
+
     const nextId = ingredients.length > 0 ? Math.max(...ingredients.map((i) => i.id)) + 1 : 0;
     const newIgredient = {id:nextId, ingredient:ing}
     setIngredients([...ingredients,newIgredient])
     setInput("")
+    setSuggestions([])
+
+
     
   }
 
-  const addIng = (ing) => {
-    console.log(ing)
+  const handleSubmit = (event) =>{
+    event.preventDefault();
   }
 
   const removeIngredient = (id) =>{
@@ -107,15 +115,15 @@ function PantryReady(){
           <div className="search_result">
             <div className="search">
               <i className="fa-solid fa-magnifying-glass"></i>
-              <form>
-                <input type="text" name="ingInput" value={input} onChange={(event)=>handleOnchange(event,event.target.value)} placeholder="Enter your ingredients"></input>
+              <form onSubmit={(event)=>handleSubmit(event)}>
+                <input type="text" name="ingInput" value={input} onChange={(event)=>handleOnchange(event.target.value)} placeholder="Enter your ingredients" autocomplete="off"></input>
                 <br/>
                 {/* <button onClick={(event)=>addIngredient(event,input)}>Add</button> */}
               </form>
               <button className='btn_close' onClick={()=>setShowResults(false)}><i className="fa-solid fa-xmark"></i></button>
             </div> 
             <div className="suggestions">
-                <SuggestionList suggestedIngredients={suggestions} OnAdd={addIng}/>
+                <SuggestionList suggestedIngredients={suggestions} OnAdd={addIngredient}/>
               </div>
           </div>
         }
