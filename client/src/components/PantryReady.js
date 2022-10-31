@@ -5,16 +5,49 @@ import PantryIngredientList from "./PantryIngredientList";
 import useLocalStorage from "../hooks/LocalStorageHook"
 
 function PantryReady(){
-
-  
+  const ingredients_array = [
+    {id:1,ingredient:"Rice"},
+    {id:2,ingredient:"Apple Juice"},
+    {id:3,ingredient:"Orange"},
+    {id:4,ingredient:"carrot"},
+    {id:5,ingredient:"Navy Beans"},
+    {id:6,ingredient:"Beans"},
+    {id:7,ingredient:"Basmatic Rice"},
+    {id:8,ingredient:"Milk"},
+    {id:9,ingredient:"Suasage"},
+    {id:10,ingredient:"Beef Sausage"},
+    {id:11,ingredient:"Tomato puree"},
+    {id:12,ingredient:"Chicken Broth"},
+    {id:13,ingredient:"Beef broth"},
+    {id:14,ingredient:"Lobster"},
+    {id:15,ingredient:"Bread"},
+    {id:16,ingredient:"Breadcrumbs"},
+    {id:17,ingredient:"Cheese"},
+    {id:18,ingredient:"Mozerella Cheese"},
+    {id:19,ingredient:"Chedda Cheese"},
+    {id:20,ingredient:"Pepperoni"},
+    {id:21,ingredient:"Olive oil"},
+  ]
   const [showResults, setShowResults] = useState(false)
   const [input, setInput] = useState('')
   const [ingredients, setIngredients] = useLocalStorage("ingredients", [])
   const [suggestions, setSuggestions] = useState([])
 
-  
-
   const onClickShowIngredients = () => setShowResults(true)
+
+  const handleOnchange = (text) => {
+    let matches = [];
+    if(text.length > 0){
+      matches = ingredients_array.filter(ing => {
+        const regex = new RegExp(`${text}`,"gi")
+        return ing.ingredient.match(regex)
+      })
+    }
+    setSuggestions(matches);
+
+    console.log(suggestions)
+    setInput(text);
+  }
 
   const addIngredient =(event,ing)=>{
     event.preventDefault();
@@ -30,7 +63,7 @@ function PantryReady(){
     setIngredients(newIngredients)
   }
 
-  console.log(ingredients)
+  // console.log(ingredients)
   return(
     <div className="pantry_ready">
       <section>
@@ -69,7 +102,7 @@ function PantryReady(){
             <div className="search">
               <i className="fa-solid fa-magnifying-glass"></i>
               <form>
-                <input type="text" name="ingInput" value={input} onChange={(event)=>setInput(event.target.value)} placeholder="Enter your ingredients"></input>
+                <input type="text" name="ingInput" value={input} onChange={(event)=>handleOnchange(event.target.value)} placeholder="Enter your ingredients"></input>
                 <br/>
                 <button onClick={(event)=>addIngredient(event,input)}>Add</button>
               </form>
