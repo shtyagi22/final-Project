@@ -10,9 +10,9 @@ function CommentItem(props){
     if(result){
       if(rating<5){
         for(let i = 1; i <= rating; i++){
-          output.push(<i class="fa-solid fa-star"></i>)
+          output.push(<span>&nbsp;&nbsp;<i class="fa-solid fa-star"></i></span>)
         }
-        output.push(<i class="fa-solid fa-star-half-stroke"></i>)
+        output.push(<span>&nbsp;&nbsp;<i class="fa-solid fa-star-half-stroke"></i></span>)
         for(let i = 1; i <= 5-rating; i++){
           output.push(<i class="fa-regular fa-star"></i>)
         }
@@ -23,7 +23,7 @@ function CommentItem(props){
       }
     } else{
       for(let i = 1; i <= rating; i++){
-        output.push(<i class="fa-solid fa-star"></i>)
+        output.push(<span>&nbsp;&nbsp;<i class="fa-solid fa-star"></i></span>)
       }
       for(let i = 1; i <= 5-rating; i++){
         output.push(<i class="fa-regular fa-star"></i>)

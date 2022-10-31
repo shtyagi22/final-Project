@@ -9,16 +9,33 @@ import Post from './Post';
 import PantryReady from './PantryReady'
 
 import CommentItem from './CommentItem';
+import CommentItemList from './CommentItemList';
 
 function App() {
 
-  const comment = {
-    image: "https://graph.facebook.com/10211597131705405/picture?height=180&width=180",
-    name: "Erica M.",
-    time: "2 years ago",
-    rating:2.7,
-    comment: "I agree with the other post about the dish needing more seasoning. I added additional seasoning but it still didn't do much for the flavor. The topping was also a little dry."
+  const comments = 
+  [
+    {
+    id:1,
+    comment: {
+      image: "https://lh3.googleusercontent.com/a/ALm5wu1_-dgWtl7-p3AMWUcgUpYnJAV_zG0iMe59OOaH=s112-c-rw-v1-e365",
+      name: "Erica M.",
+      time: "2 years ago",
+      rating:4,
+      comment: "I agree with the other post about the dish needing more seasoning. I added additional seasoning but it still didn't do much for the flavor. The topping was also a little dry."
+    }
+  },
+  {
+    id:2,
+    comment: {
+      image: "https://graph.facebook.com/10156755061204968/picture?height=180&width=180",
+      name: "Nicole Wall",
+      time: "10 months ago",
+      rating:3,
+      comment: "i didn't look anything like the picture i might have done something wrong but it was still good."
+    }
   }
+]
   
   const [nav,setNav] = useState('');
 
@@ -52,7 +69,7 @@ function App() {
         <SignUpLogInPage/>
         <Post/>
 
-        <CommentItem comment={comment}/>
+        <CommentItemList comments={comments}/>
         </section>
       }      
      
