@@ -10,6 +10,7 @@ function PantryReady(){
   const [showResults, setShowResults] = useState(false)
   const [input, setInput] = useState('')
   const [ingredients, setIngredients] = useLocalStorage("ingredients", [])
+  const [suggestions, setSuggestions] = useState([])
 
   
 
