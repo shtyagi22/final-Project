@@ -1,0 +1,55 @@
+.add_comment_container{
+  border-top: 1px solid rgb(214, 211, 211);
+  border-bottom: 1px solid rgb(214, 211, 211);
+  width: 650px;
+  font-weight: lighter;
+}
+
+.add_comment_container img{
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-top: 15px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+.add_comment_container .write_review{
+  display: inline-block;
+  vertical-align: middle;
+  
+  opacity: 40%;
+  
+}
+
+.add_comment_container textarea{
+  border: none;
+  background-color: transparent;
+  resize: none;
+  outline: none;
+  width: 600px;
+  height: 60px;
+  color: gray;
+  margin-top: 20px;
+}
+
+.add_comment_container input[type=text]::placeholder{
+  opacity: 40%;
+}
+
+.add_comment_container button{
+  border-radius: 20px;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  background-color:rgba(58,131,120,255);  
+  font-size: 13px;
+
+  margin-right: 20px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.add_comment_container .submit_cancel span{
+  cursor: pointer;
+}

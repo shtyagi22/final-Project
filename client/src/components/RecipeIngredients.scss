@@ -1,0 +1,19 @@
+.recipe_ingredient{
+  height: 40px;
+}
+
+.recipe_ingredient span{
+  font-weight: 14px;
+}
+
+.recipe_ingredient .fa-circle-plus{
+  color: rgba(58,131,120,255) ;
+  cursor: pointer;
+  padding-right: 10px;
+}
+
+.recipe_ingredient_ul{
+  display: flex;
+  flex-direction: column;
+  font-weight:lighter;
+}

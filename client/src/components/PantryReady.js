@@ -116,7 +116,7 @@ function PantryReady(){
             <div className="search">
               <i className="fa-solid fa-magnifying-glass"></i>
               <form onSubmit={(event)=>handleSubmit(event)}>
-                <input type="text" name="ingInput" value={input} onChange={(event)=>handleOnchange(event.target.value)} placeholder="Enter your ingredients" autocomplete="off"></input>
+                <input autoFocus type="text" name="ingInput" value={input} onChange={(event)=>handleOnchange(event.target.value)} placeholder="Enter your ingredients" autocomplete="off"></input>
                 <br/>
                 {/* <button onClick={(event)=>addIngredient(event,input)}>Add</button> */}
               </form>

@@ -22,8 +22,7 @@ function Post(){
     }
 
   }
- console.log(fileState.image.length)
-  // console.log(image)
+
   return (
     <div className="new_post">
       <div className="prof_pic">
@@ -38,7 +37,7 @@ function Post(){
             fileState.image.length>0 && 
             <div className='img_preview'>
               
-              <img src={fileState.image} alt="preview image" />
+              <img src={fileState.image} alt="file preview" />
               <button className='btn_close' onClick={()=>setFileState({image:""})}><i className="fa-solid fa-xmark"></i></button>
             </div>
           }
