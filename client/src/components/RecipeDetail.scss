@@ -1,0 +1,116 @@
+.recipe_detail_container{
+  display: flex;
+  flex-direction: column;
+  width: 900px;
+  justify-content: center;
+}
+
+.recipe_detail_container header{
+  max-width: 900px;
+  border-bottom:1px solid  rgb(212, 209, 209);
+}
+
+.recipe_detail_container .header_container{
+  max-width: 850px;
+  display: flex;
+  flex-direction: row;
+}
+.recipe_detail_container .left_side_overview{
+  margin-top: 100px;
+  width: 550px;
+}
+
+.left_side_overview .recipe_name{
+  font-size: 35px;
+  display: block;
+  font-weight: lighter;
+}
+.left_side_overview .recipe_owner{
+  font-size: 15px;
+  font-weight: lighter;
+  display: block;
+  opacity: 40%;
+}
+.recipe_detail_container .right_side_picture img{
+  border-radius: 10px;
+  width: 450px;
+
+  margin-bottom: 60px;
+}
+.left_side_overview .details_calories_cooktime{
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+
+.details_calories_cooktime .no_ing, .cal, .time{
+  font-weight: 1;
+  font-size: 40px;
+  display: block;
+}
+
+.details_calories_cooktime span{
+  font-weight: lighter;
+  text-align: center;
+  
+}
+
+.details_calories_cooktime .div_no_ing{
+  margin-right: 40px;
+}
+.details_calories_cooktime .div_time{
+  border-left: 1px solid rgb(212, 209, 209);
+  border-right: 1px solid  rgb(212, 209, 209);
+  padding-right: 40px;
+  padding-left: 40px;
+}
+
+.details_calories_cooktime .div_cal{
+  margin-left: 40px;
+  text-align: center;
+}
+
+.left_side_overview a{
+ display: block;
+ margin-top: 30px;
+ background-color: rgba(58,131,120,255);
+ width: 200px;
+ text-align: center;
+ padding-top: 8px;
+ height: 40px;
+ 
+ text-decoration: none;
+ color: white;
+ border-radius: 20px;
+}
+
+.recipe_detail_container main{
+  margin-top: 50px;
+  max-width: 650px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 125px;
+}
+
+
+main .recipe_description span{
+  font-size: 25px;
+}
+.recipe_detail_container .recipe_description p{
+  padding-top: 20px;
+  font-size: 15px;
+  line-height: 2;
+}
+main .recipe_ingredients .ingds_span{
+  display: block;
+  margin-bottom: 20px;
+  font-size: 25px;
+  
+}
+
+main .recipe_reviews .review_span{
+  display: block;
+  margin-bottom: 20px;
+  font-size: 25px;
+}
+
