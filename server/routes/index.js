@@ -17,6 +17,8 @@ router.get('/api', async (req, res) => {
   const response = await fetch(`https://api.edamam.com/search?app_id=${APP_id}&app_key=${APP_key}&q=pizza`);
   const data = await response.json();
   res.send(data);
- });
+
+
+});
 
 module.exports = router;
