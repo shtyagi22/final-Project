@@ -1,0 +1,38 @@
+.add_comment_container{
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  width: 650px;
+  font-weight: lighter;
+}
+
+.add_comment_container img{
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-top: 15px;
+  margin-right: 20px;
+}
+.add_comment_container .write_review{
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: 20px;
+  opacity: 40%;
+}
+
+.add_comment_container input[type=text]{
+  border: none;
+  background-color: transparent;
+  resize: none;
+  outline: none;
+  width: 250px;
+  height: 60px;
+  margin-left: 10px;
+  border-start-end-radius: 30px;
+  border-end-end-radius: 30px;
+  color: gray;
+}
+
+.add_comment_container input[type=text]::placeholder{
+  opacity: 40%;
+}

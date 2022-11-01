@@ -10,6 +10,7 @@ import PantryReady from './PantryReady'
 
 import CommentItem from './CommentItem';
 import CommentItemList from './CommentItemList';
+import AddComment from './AddComment';
 
 function App() {
 
@@ -70,6 +71,8 @@ function App() {
         <Post/>
 
         <CommentItemList comments={comments}/>
+
+        <AddComment/>
         </section>
       }      
      
