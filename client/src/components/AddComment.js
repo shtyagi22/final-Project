@@ -30,14 +30,16 @@ function AddComment(props){
           onPointerMove={onPointerMove}
           size={"22px"}
           fillColor={"rgba(58,131,120,255)"}
+          allowFraction={true}
           /* Available Props */
         />
         </div>
         <form>
-          <input autoFocus type="text" placeholder="Write your review or comment here"/>
+          <textarea autoFocus placeholder="Write your review or comment here"></textarea>
         </form>
-        <div>
-        <div></div>
+        <div className="submit_cancel">
+        <button>Submit</button>
+        <span onClick={()=>setShowAddComment(false)}>Cancel</span>
         </div>
         </div>
 
