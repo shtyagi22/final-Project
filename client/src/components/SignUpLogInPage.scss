@@ -1,0 +1,42 @@
+
+.signin_login{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signin_login div{ 
+  border-bottom: 1px solid grey;
+}
+
+.signin_login input[type=text]{
+  width: 600px;
+  height: 60px;
+  font-size: 40px;
+  letter-spacing: 2px;
+  text-align: center;
+  
+}
+.signin_login input[type=text]::placeholder{
+  opacity: 30%;
+}
+
+
+.signin_login  input{
+  border: none;
+  background-color: transparent;
+  resize: none;
+  outline: none;
+  
+  }
+  .signin_login input[type=submit]{
+    border-radius: 20px;
+    background-color: rgba(58,131,120,255);
+    color: white; 
+    margin-top: 20px;
+    padding: 10px 50px;
+    
+  }
+
+
+

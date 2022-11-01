@@ -1,0 +1,23 @@
+.suggested_ingredient{
+  height: 30px;
+  width: 650px;
+  font-size: 14px;
+}
+.suggested_ingredient:hover{
+  background-color:rgb(245, 239, 234);
+}
+
+.suggested_ingredient span {
+  padding: 10px;
+}
+.suggested_ingredient .fa-circle-plus{
+  color: rgba(58,131,120,255) ;
+  cursor: pointer;
+  padding-left: 10px;
+}
+
+.suggested_ingredient_ul{
+  display: flex;
+  flex-direction: column;
+  font-weight:lighter;
+}
