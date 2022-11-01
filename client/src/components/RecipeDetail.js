@@ -1,5 +1,7 @@
 import "./RecipeDetail.scss"
 import RecipeIngredients from "./RecipeIngredients"
+import CommentItemList from "./CommentItemList"
+import AddComment from "./AddComment"
 
 function RecipeDetail(props){
   return(
@@ -39,7 +41,7 @@ function RecipeDetail(props){
         <p>{props.recipe.description}</p>
         </div>
         <div className="recipe_ingredients">
-        <span>Ingredients</span>
+        <span className="ingds_span">Ingredients</span>
         <RecipeIngredients ingredients={props.recipe.ingredients}/>
         </div>
         <div className="add_to_shopping_cart">
@@ -49,7 +51,9 @@ function RecipeDetail(props){
 
         </div>
         <div className="recipe_reviews">
-
+          <span className="review_span">Reviews</span>
+           <AddComment/>
+          <CommentItemList comments={props.comments}/> 
         </div>
         
       </main>

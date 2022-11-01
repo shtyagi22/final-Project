@@ -105,11 +105,10 @@ function App() {
         <SignUpLogInPage/>
         <Post/> */}
 
-        <RecipeDetail recipe={recipeDescription}/>
-
-
-        <CommentItemList comments={comments}/>
-        <AddComment/>
+        <RecipeDetail 
+        recipe={recipeDescription} 
+        comments={comments}
+        />
         <div className='App'>
           <div id='signInDiv'></div>
         </div>

@@ -94,7 +94,6 @@
 
 
 main .recipe_description span{
-  
   font-size: 25px;
 }
 .recipe_detail_container .recipe_description p{
@@ -102,8 +101,16 @@ main .recipe_description span{
   font-size: 15px;
   line-height: 2;
 }
-// main .recipe_ingredients span{
-//   font-size: 25px;
+main .recipe_ingredients .ingds_span{
+  display: block;
+  margin-bottom: 20px;
+  font-size: 25px;
+  
+}
 
-// }
+main .recipe_reviews .review_span{
+  display: block;
+  margin-bottom: 20px;
+  font-size: 25px;
+}
 
