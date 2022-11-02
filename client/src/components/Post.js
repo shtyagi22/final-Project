@@ -1,12 +1,15 @@
 import React,{ useState,useRef } from 'react';
 import Picker from 'emoji-picker-react';
 import "./Post.scss"
+
+
+
+
 function Post(props){
 
   const [inputStr, setInputStr] = useState('');
   const [showPicker, setShowPicker] = useState(false);
   const [fileState, setFileState] = useState({selectedFile:null,image:""})
-  const [newPost, setNewPost] = useState({postMessage:"", postImage:null})
 
   const onEmojiClick = (emojiObject, event) => {
     setInputStr(prevInput => prevInput + emojiObject.emoji);
@@ -16,6 +19,9 @@ function Post(props){
 
   const handleOnImageChange = (event) =>{
     if (event.target.files && event.target.files[0]) {
+
+      const formData = new FormData();
+      formData.append('my-image-file', event.target.files[0], event.target.files[0].name);
       setFileState({
         selectedFile:event.target.files[0],
         image: URL.createObjectURL(event.target.files[0])
@@ -27,18 +33,18 @@ function Post(props){
   
   const onHandleShare = (event) => {
     event.preventDefault();
-    const newPostCreated = {
-      postMessage: inputStr,
-      postImage: fileState
+    if(inputStr.length){
+      const newPostCreated = {
+        postMessage: inputStr,
+        postImage: fileState
+      }
+  
+      props.OnPost(newPostCreated)
+  
+      setFileState({selectedFile:null,image:""});
+      setInputStr("")
     }
 
-    console.log(fileState.selectedFile)
-    setNewPost(newPostCreated)
-
-    props.OnPost(newPost)
-
-    setFileState({selectedFile:null,image:""});
-    setInputStr("")
   }
 
   return (
@@ -55,7 +61,7 @@ function Post(props){
             fileState.image.length>0 && 
             <div className='img_preview'>
               <img src={fileState.image} alt="file preview" />
-              <button className='btn_close' onClick={()=>setFileState({image:""})}><i className="fa-solid fa-xmark"></i></button>
+              <button className='btn_close' onClick={()=>setFileState({selectedFile:null,image:""})}><i className="fa-solid fa-xmark"></i></button>
             </div>
           }
           
@@ -78,7 +84,7 @@ function Post(props){
           </div>
           <div>
             <form >
-              <input type="submit" value="Share" onClick={(event) => onHandleShare(event)}/>
+              <input type="submit" value="Share" onClick={(event) => onHandleShare(event)} disabled={inputStr.length===0}/>
             </form>
           </div>
         </div>

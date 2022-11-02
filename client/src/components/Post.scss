@@ -35,6 +35,10 @@
   padding: 10px 25px;
   border-radius: 20px;
 }
+.pic_emo_but input[type=submit]:disabled{
+  // background-color:  #63b398 ;
+  opacity: 50%;
+}
 
 .pic_emo{
   margin-top: 10px;

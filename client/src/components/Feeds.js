@@ -30,9 +30,8 @@ function Feeds (){
       postImage: newPost.postImage.image
 
     }
-    console.log("imageURL",newPost.postImage.image)
 
-    // setPosts([newPostTobeAdded, ...posts])
+    setPosts(prev => [newPostTobeAdded, ...prev])
   }
 
     return(

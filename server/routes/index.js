@@ -14,7 +14,7 @@ router.get('/', function (req, res, next) {
 router.put('/api', (req, res) => {
   const data = req.body;
   console.log("WE ARE IN THE SERVER", data);
-  res.json(data)
+  res.send(data)
 });
 
 

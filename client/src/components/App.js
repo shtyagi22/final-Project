@@ -26,11 +26,11 @@ function App() {
   }
 
   useEffect(()=>{
-    axios.get("/api").then((res)=>[
+    axios.get("/api").then((res)=>{
       console.log(res.data.hits)
-    ],[])
+    })
 
-  })
+  },[])
 
 
   // useEffect(()=>{
@@ -49,8 +49,8 @@ function App() {
     function searchIngredients(arr_ingrediends){
       console.log(arr_ingrediends)
     
-    return axios.put("/api", arr_ingrediends).then(()=>{
-
+    return axios.put("/api", arr_ingrediends).then((res)=>{
+      return res.data
     })
   }
 
@@ -114,7 +114,7 @@ function App() {
       </div>
       </section>
       {nav === "PANTRY" && 
-        <section className="schedule_pantry">
+        <section className="schedule">
           <PantryReady searchIngredients={searchIngredients}/> 
         </section>
       }
