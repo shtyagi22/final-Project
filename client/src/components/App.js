@@ -14,10 +14,11 @@ import AddComment from './AddComment';
 import jwt_decode from 'jwt-decode'
 import RecipeDetail from './RecipeDetail';
 import Feeds from './Feeds';
+import RecipeCardItems from './RecipeCardItems';
 
 function App() {
 
-  
+  const [recipes, setRecipes] = useState([]);
 
   const handleCallbackResponse =(response) =>{
     console.log("credential", response.credential)
@@ -28,7 +29,11 @@ function App() {
   useEffect(()=>{
     axios.get("/api").then((res)=>{
       console.log(res.data.hits)
-    })
+      return res.data.hits
+
+    }).then((res)=>[
+      setRecipes(res)
+    ])
 
   },[])
 
@@ -120,18 +125,26 @@ function App() {
       }
       {nav === "" && 
       <section className="schedule">
-        <Feeds />
 
-        {/* <SearchBar/>
-        <RecipeCard/>
-        <SignUpLogInPage/>
-        <Post/> */}
+      {/* <RecipeCardItems recipes={recipes}/> */}
 
-        {/* <RecipeDetail 
+      <RecipeDetail 
         recipe={recipeDescription} 
         comments={comments}
-        /> */}
-        {/* <div className='App'>
+        />
+
+        {/* <Feeds />
+
+        <SearchBar/>
+        <RecipeCard/>
+        <SignUpLogInPage/>
+        <Post/>
+
+        <RecipeDetail 
+        recipe={recipeDescription} 
+        comments={comments}
+        />
+        <div className='App'>
           <div id='signInDiv'></div>
         </div> */}
         </section>

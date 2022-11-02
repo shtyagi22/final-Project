@@ -22,7 +22,10 @@ function PreviousPost(props){
         </div>
         <div className="right-side">
           <div className="name_and_time">
-          <span>{props.post.username}</span> <span className="time_ago">{props.post.time}</span>
+          <span>{props.post.username}</span> <span className="time_ago">3 days ago</span>
+          </div>
+          <div className="comment_text">
+            {props.post.post}
           </div>
           {
             props.post.postImage &&
@@ -30,9 +33,7 @@ function PreviousPost(props){
               <img alt="post_img" src={props.post.postImage}/>
             </div>
           }
-          <div className="comment_text">
-            {props.post.post}
-          </div>
+
           <div className='like_comments'>
               <div className='comment_icon_count'>
                 <i class="fa-regular fa-comment"></i>
