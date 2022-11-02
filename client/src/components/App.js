@@ -7,7 +7,7 @@ import RecipeCard from './RecipeCard';
 import SignUpLogInPage from './SignUpLogInPage';
 import Post from './Post';
 import PantryReady from './PantryReady'
-
+import axios from 'axios'
 import CommentItem from './CommentItem';
 import CommentItemList from './CommentItemList';
 import AddComment from './AddComment';
@@ -16,11 +16,21 @@ import RecipeDetail from './RecipeDetail';
 
 function App() {
 
+  
+
   const handleCallbackResponse =(response) =>{
     console.log("credential", response.credential)
     const userObject = jwt_decode(response.credential);
     console.log(userObject)
   }
+
+  useEffect(()=>{
+    axios.get("/api").then((res)=>[
+      console.log(res.data.hits)
+    ],[])
+
+  })
+
 
   useEffect(()=>{
     /* global google */
@@ -34,6 +44,15 @@ function App() {
       { theme:"outline", size:"large"}
     )
   },[])
+
+    function searchIngredients(arr_ingrediends){
+      console.log(arr_ingrediends)
+    
+    return axios.put("/api", arr_ingrediends).then(()=>{
+
+    })
+  }
+
 
   const recipeDescription = {
     name: "Avocado Sashimi",
@@ -95,7 +114,7 @@ function App() {
       </section>
       {nav === "PANTRY" && 
         <section className="schedule_pantry">
-          <PantryReady/> 
+          <PantryReady searchIngredients={searchIngredients}/> 
         </section>
       }
       {nav === "" && 
