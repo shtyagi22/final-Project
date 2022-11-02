@@ -13,6 +13,7 @@ import CommentItemList from './CommentItemList';
 import AddComment from './AddComment';
 import jwt_decode from 'jwt-decode'
 import RecipeDetail from './RecipeDetail';
+import Feeds from './Feeds';
 
 function App() {
 
@@ -32,18 +33,18 @@ function App() {
   })
 
 
-  useEffect(()=>{
-    /* global google */
-    google.accounts.id.initialize({
-      client_id:"354838477230-p6j3da9j9fl49g4r1om2qn8l51ierbmh.apps.googleusercontent.com",
-      callback: handleCallbackResponse
-    })
+  // useEffect(()=>{
+  //   /* global google */
+  //   google.accounts.id.initialize({
+  //     client_id:"354838477230-p6j3da9j9fl49g4r1om2qn8l51ierbmh.apps.googleusercontent.com",
+  //     callback: handleCallbackResponse
+  //   })
     
-    google.accounts.id.renderButton(
-      document.getElementById("signInDiv"),
-      { theme:"outline", size:"large"}
-    )
-  },[])
+  //   google.accounts.id.renderButton(
+  //     document.getElementById("signInDiv"),
+  //     { theme:"outline", size:"large"}
+  //   )
+  // },[])
 
     function searchIngredients(arr_ingrediends){
       console.log(arr_ingrediends)
@@ -119,18 +120,20 @@ function App() {
       }
       {nav === "" && 
       <section className="schedule">
+        <Feeds />
+
         {/* <SearchBar/>
         <RecipeCard/>
         <SignUpLogInPage/>
         <Post/> */}
 
-        <RecipeDetail 
+        {/* <RecipeDetail 
         recipe={recipeDescription} 
         comments={comments}
-        />
-        <div className='App'>
+        /> */}
+        {/* <div className='App'>
           <div id='signInDiv'></div>
-        </div>
+        </div> */}
         </section>
       }      
      

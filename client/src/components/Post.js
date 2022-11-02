@@ -1,11 +1,12 @@
 import React,{ useState,useRef } from 'react';
 import Picker from 'emoji-picker-react';
 import "./Post.scss"
-function Post(){
+function Post(props){
 
   const [inputStr, setInputStr] = useState('');
   const [showPicker, setShowPicker] = useState(false);
   const [fileState, setFileState] = useState({selectedFile:null,image:""})
+  const [newPost, setNewPost] = useState({postMessage:"", postImage:null})
 
   const onEmojiClick = (emojiObject, event) => {
     setInputStr(prevInput => prevInput + emojiObject.emoji);
@@ -23,6 +24,23 @@ function Post(){
 
   }
 
+  
+  const onHandleShare = (event) => {
+    event.preventDefault();
+    const newPostCreated = {
+      postMessage: inputStr,
+      postImage: fileState
+    }
+
+    console.log(fileState.selectedFile)
+    setNewPost(newPostCreated)
+
+    props.OnPost(newPost)
+
+    setFileState({selectedFile:null,image:""});
+    setInputStr("")
+  }
+
   return (
     <div className="new_post">
       <div className="prof_pic">
@@ -36,7 +54,6 @@ function Post(){
           {
             fileState.image.length>0 && 
             <div className='img_preview'>
-              
               <img src={fileState.image} alt="file preview" />
               <button className='btn_close' onClick={()=>setFileState({image:""})}><i className="fa-solid fa-xmark"></i></button>
             </div>
@@ -60,7 +77,9 @@ function Post(){
             onEmojiClick={onEmojiClick} />}
           </div>
           <div>
-            <input type="submit" value="Share"/>
+            <form >
+              <input type="submit" value="Share" onClick={(event) => onHandleShare(event)}/>
+            </form>
           </div>
         </div>
       </form>
