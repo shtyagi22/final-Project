@@ -13,10 +13,12 @@ import CommentItemList from './CommentItemList';
 import AddComment from './AddComment';
 import jwt_decode from 'jwt-decode'
 import RecipeDetail from './RecipeDetail';
+import Feeds from './Feeds';
+import RecipeCardItems from './RecipeCardItems';
 
 function App() {
 
-  
+  const [recipes, setRecipes] = useState([]);
 
   const handleCallbackResponse =(response) =>{
     console.log("credential", response.credential)
@@ -25,31 +27,35 @@ function App() {
   }
 
   useEffect(()=>{
-    axios.get("/api").then((res)=>[
+    axios.get("/api").then((res)=>{
       console.log(res.data.hits)
-    ],[])
+      return res.data.hits
 
-  })
+    }).then((res)=>[
+      setRecipes(res)
+    ])
 
-
-  useEffect(()=>{
-    /* global google */
-    google.accounts.id.initialize({
-      client_id:"354838477230-p6j3da9j9fl49g4r1om2qn8l51ierbmh.apps.googleusercontent.com",
-      callback: handleCallbackResponse
-    })
-    
-    google.accounts.id.renderButton(
-      document.getElementById("signInDiv"),
-      { theme:"outline", size:"large"}
-    )
   },[])
+
+
+  // useEffect(()=>{
+  //   /* global google */
+  //   google.accounts.id.initialize({
+  //     client_id:"354838477230-p6j3da9j9fl49g4r1om2qn8l51ierbmh.apps.googleusercontent.com",
+  //     callback: handleCallbackResponse
+  //   })
+    
+  //   google.accounts.id.renderButton(
+  //     document.getElementById("signInDiv"),
+  //     { theme:"outline", size:"large"}
+  //   )
+  // },[])
 
     function searchIngredients(arr_ingrediends){
       console.log(arr_ingrediends)
     
-    return axios.put("/api", arr_ingrediends).then(()=>{
-
+    return axios.put("/api", arr_ingrediends).then((res)=>{
+      return res.data
     })
   }
 
@@ -113,16 +119,26 @@ function App() {
       </div>
       </section>
       {nav === "PANTRY" && 
-        <section className="schedule_pantry">
+        <section className="schedule">
           <PantryReady searchIngredients={searchIngredients}/> 
         </section>
       }
       {nav === "" && 
       <section className="schedule">
-        {/* <SearchBar/>
+
+      {/* <RecipeCardItems recipes={recipes}/> */}
+
+      <RecipeDetail 
+        recipe={recipeDescription} 
+        comments={comments}
+        />
+
+        {/* <Feeds />
+
+        <SearchBar/>
         <RecipeCard/>
         <SignUpLogInPage/>
-        <Post/> */}
+        <Post/>
 
         <RecipeDetail 
         recipe={recipeDescription} 
@@ -130,7 +146,7 @@ function App() {
         />
         <div className='App'>
           <div id='signInDiv'></div>
-        </div>
+        </div> */}
         </section>
       }      
      
