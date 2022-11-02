@@ -10,15 +10,22 @@ router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+
+
 const APP_id = "e7215228";
 const APP_key = "2f5c8ccb5407391f803663f04d6a1671";
 
 router.get('/api', async (req, res) => {
-  const response = await fetch(`https://api.edamam.com/search?app_id=${APP_id}&app_key=${APP_key}&q=pizza`);
+  const response = await fetch(`https://api.spoonacular.com/recipes/findByIngredients?apiKey=73760b73b3fd4ae1ac47f74ebd4ac47c&ingredients=apples,+flour,+sugar&number=2`);
   const data = await response.json();
   res.send(data);
 
 
+});
+
+router.get('/api', (req, res) => {
+  const data = req.body;
+  console.log("data", data);
 });
 
 module.exports = router;
