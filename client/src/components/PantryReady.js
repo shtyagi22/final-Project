@@ -5,7 +5,7 @@ import SuggestionList from "./SuggestionList";
 
 import useLocalStorage from "../hooks/LocalStorageHook"
 
-function PantryReady(){
+function PantryReady(props){
   const ingredients_array = [
     {id:1,ingredient:"Rice"},
     {id:2,ingredient:"Apple Juice"},
@@ -63,9 +63,16 @@ function PantryReady(){
     setIngredients([...ingredients,newIgredient])
     setInput("")
     setSuggestions([])
-
-
     
+  }
+
+  const handleIngredientsSearch = () =>{
+    props.searchIngredients(ingredients)
+    .then((res)=>{
+      console.log("RESPONSE FROM SERVER",res)
+    }).catch((e)=>{
+      console.log(e)
+    })
   }
 
   const handleSubmit = (event) =>{
@@ -102,7 +109,7 @@ function PantryReady(){
               <div className="ingredients">
                 <PantryIngredientList ingredients={ingredients} OnCancel={removeIngredient}/>
                 <div>
-                  <button disabled={ingredients.length === 0}>Search Pantry-Ready Recipes</button>
+                  <button disabled={ingredients.length === 0} onClick={handleIngredientsSearch}>Search Pantry-Ready Recipes</button>
                 </div>
               </div>
             </div>

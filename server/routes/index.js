@@ -6,8 +6,15 @@ const fetch = require('node-fetch');
 
 
 /* GET home page. */
+
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
+});
+
+router.put('/api', (req, res) => {
+  const data = req.body;
+  console.log("WE ARE IN THE SERVER", data);
+  res.json(data)
 });
 
 
@@ -23,9 +30,5 @@ router.get('/api', async (req, res) => {
 
 });
 
-router.get('/api', (req, res) => {
-  const data = req.body;
-  console.log("data", data);
-});
 
 module.exports = router;

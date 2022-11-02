@@ -26,7 +26,7 @@ function RecipeDetail(props){
               </div>
             </div>
             <div>
-              <a href={props.recipe.url}>Read Direction</a>
+              <a href={props.recipe.url}>Read Directions</a>
             </div>
           </div>
           <div className="right_side_picture">
