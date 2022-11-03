@@ -9,7 +9,7 @@ function SearchBar(){
         <i class="fa-solid fa-magnifying-glass"></i>
       </div>
       <form >
-        <input type="text" className="text_input"></input>
+        <input type="text" autoFocus className="text_input"></input>
       </form>
     </div>
   )

@@ -3,14 +3,14 @@ import CommentItem from "./CommentItem"
 
 function CommentItemList(props){
 
-  const commentItemList = props.comments.map(e => {
-    return <CommentItem comment={e.comment} id={e.id}/>
+  const commentItemList = props.comments.map((e,index) => {
+    return <CommentItem comment={e.comment} id={index}/>
   })
 
   
   return(
     <ul>
-      {commentItemList}
+      {commentItemList} 
     </ul>
   )
 }
