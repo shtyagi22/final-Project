@@ -4,5 +4,6 @@ DROP TABLE IF EXISTS posts CASCADE;
 CREATE TABLE posts (
   id SERIAL PRIMARY KEY,
   post_text VARCHAR(255),
+  image bytea,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
 );
