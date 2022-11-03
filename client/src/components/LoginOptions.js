@@ -25,7 +25,9 @@ function LoginOptions(props){
   const handleCallbackResponse =(response) =>{
     console.log("credential", response.credential)
     const userObject = jwt_decode(response.credential);
-   
+    if(userObject){
+      window.location = "/"
+    }
   }
 
   return(
