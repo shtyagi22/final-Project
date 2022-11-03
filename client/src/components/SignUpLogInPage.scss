@@ -3,7 +3,7 @@
   width: 200px;
   height: 200px;
   z-index: 15;
-  top: 40%;
+  top: 20%;
   left: 50%;
 }
 .signin_login{
@@ -44,6 +44,18 @@
     padding: 10px 50px;
     
   }
+  .signin_login input[type=submit]:disabled{
+    opacity: 40%;
+  }
 
-
-
+  .signin_login input[type=text]::placeholder{
+    opacity: 30%;
+  }
+  .signin_login input[type=text]{
+    width: 600px;
+    height: 60px;
+    font-size: 40px;
+    letter-spacing: 2px;
+    text-align: center;
+    color: gray;
+  }

@@ -5,11 +5,17 @@ import "./AddComment.scss"
 function AddComment(props){
 
   const [showAddComment, setShowAddComment] = useState(false)
+  const [rating,setRating]= useState(0)
 
   const onPointerEnter = () => console.log('Enter')
   const onPointerLeave = () => console.log('Leave')
-  const onPointerMove = (value, index) => console.log(value, index)
+  const onPointerMove = (value, index) => {
+    setRating(value)
+  }
 
+  const handleComment =()=>{
+    const comment
+  }
 
   return (
     <div className="add_comment_container">

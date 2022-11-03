@@ -52,7 +52,7 @@ function RecipeDetail(props){
         </div>
         <div className="recipe_reviews">
           <span className="review_span">Reviews</span>
-           <AddComment/>
+           <AddComment onComment={props.onComment}/>
           <CommentItemList comments={props.comments}/> 
         </div>
         

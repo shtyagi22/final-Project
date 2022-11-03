@@ -17,6 +17,8 @@ import Feeds from './Feeds';
 import RecipeCardItems from './RecipeCardItems';
 import {BrowserRouter,Route,Routes} from 'react-router-dom'
 import Home from './Home';
+import PreviousPost from './PreviousPost';
+
 
 function App() {
 
@@ -32,6 +34,7 @@ function App() {
   //   ])
 
   // },[])
+  console.log(JSON.parse(localStorage.getItem("user")))
 
   function searchIngredients(arr_ingrediends){
     console.log(arr_ingrediends)
@@ -81,9 +84,10 @@ function App() {
   }
 ]
 
-const showUser = (user) =>{
-console.log("I AM IN APP.js", user)
+const handleComment = (comment) => {
+  console.log(comment)
 }
+
 
   return (
     <main className="layout">
@@ -99,9 +103,11 @@ console.log("I AM IN APP.js", user)
               </>}/>
               <Route path='/login' element={<LoginOptions />}/>
               <Route path='/feeds' element={<Feeds/>}/>
-              <Route path='/signin' element={<SignUpLogInPage user={showUser}/>}/>
+              <Route path='/signin' element={<SignUpLogInPage/>}/>
               <Route path='/search_pantry_ingredients' 
               element={<PantryReady searchIngredients={searchIngredients}/> }/>
+              <Route path='/recipe_details' element={<RecipeDetail recipe={recipeDescription} comments={comments} 
+              onComment={handleComment}/>}/>
             </Routes>
           </BrowserRouter>
         </section>

@@ -2,9 +2,11 @@ import {useEffect,useState} from 'react'
 import jwt_decode from 'jwt-decode'
 import "./LoginOptions.scss"
 import {Link, Route, Routes,redirect} from 'react-router-dom'
+import useLocalStorage from '../hooks/LocalStorageHook'
 
 function LoginOptions(props){
 
+  const [user,setUser] = useLocalStorage("user",{})
   
 
   useEffect(()=>{
@@ -25,7 +27,13 @@ function LoginOptions(props){
   const handleCallbackResponse =(response) =>{
     console.log("credential", response.credential)
     const userObject = jwt_decode(response.credential);
+    const newUser = {
+      name: `${userObject.name}`,
+      image: userObject.picture,
+      email: userObject.email
+    }
     if(userObject){
+      setUser(newUser)
       window.location = "/"
     }
   }
