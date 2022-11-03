@@ -11,53 +11,36 @@ import axios from 'axios'
 import CommentItem from './CommentItem';
 import CommentItemList from './CommentItemList';
 import AddComment from './AddComment';
-import jwt_decode from 'jwt-decode'
+import LoginOptions from './LoginOptions';
 import RecipeDetail from './RecipeDetail';
 import Feeds from './Feeds';
 import RecipeCardItems from './RecipeCardItems';
+import {BrowserRouter,Route,Routes} from 'react-router-dom'
+import Home from './Home';
 
 function App() {
 
   const [recipes, setRecipes] = useState([]);
 
-  const handleCallbackResponse =(response) =>{
-    console.log("credential", response.credential)
-    const userObject = jwt_decode(response.credential);
-    console.log(userObject)
-  }
-
-  useEffect(()=>{
-    axios.get("/api").then((res)=>{
-      console.log(res.data.hits)
-      return res.data.hits
-
-    }).then((res)=>[
-      setRecipes(res)
-    ])
-
-  },[])
-
-
   // useEffect(()=>{
-  //   /* global google */
-  //   google.accounts.id.initialize({
-  //     client_id:"354838477230-p6j3da9j9fl49g4r1om2qn8l51ierbmh.apps.googleusercontent.com",
-  //     callback: handleCallbackResponse
-  //   })
-    
-  //   google.accounts.id.renderButton(
-  //     document.getElementById("signInDiv"),
-  //     { theme:"outline", size:"large"}
-  //   )
+  //   axios.get("/api").then((res)=>{
+  //     console.log(res.data.hits)
+  //     return res.data.hits
+
+  //   }).then((res)=>[
+  //     setRecipes(res)
+  //   ])
+
   // },[])
 
-    function searchIngredients(arr_ingrediends){
-      console.log(arr_ingrediends)
-    
-    return axios.put("/api", arr_ingrediends).then((res)=>{
-      return res.data
-    })
-  }
+  function searchIngredients(arr_ingrediends){
+    console.log(arr_ingrediends)
+  
+  return axios.put("/api", arr_ingrediends).then((res)=>{
+    return res.data
+  })
+}
+
 
 
   const recipeDescription = {
@@ -97,60 +80,35 @@ function App() {
     }
   }
 ]
-  
-  const [nav,setNav] = useState('');
 
-  const navigate = (navigation) =>{
-    setNav(navigation)
-  }
+const showUser = (user) =>{
+console.log("I AM IN APP.js", user)
+}
 
-  console.log(nav)
   return (
     <main className="layout">
       <section className="sidebar">
-      <img
-            className="sidebar--centered"
-            src="images/food.png"
-            alt="Interview Scheduler"
-          />
-      <SignUpLogInButton/>
-      <div className="sidebar--centered pantry" onClick={()=>navigate("PANTRY")}>
-        Pantry Ready Recipe
-      </div>
+
       </section>
-      {nav === "PANTRY" && 
-        <section className="schedule">
-          <PantryReady searchIngredients={searchIngredients}/> 
+        <section className="main_side">
+          <BrowserRouter>
+            <Routes>
+              <Route path='/' element={<>
+              <Home/>
+              <RecipeCardItems recipes={recipes}/>
+              </>}/>
+              <Route path='/login' element={<LoginOptions />}/>
+              <Route path='/feeds' element={<Feeds/>}/>
+              <Route path='/signin' element={<SignUpLogInPage user={showUser}/>}/>
+              <Route path='/search_pantry_ingredients' 
+              element={<PantryReady searchIngredients={searchIngredients}/> }/>
+            </Routes>
+          </BrowserRouter>
         </section>
-      }
-      {nav === "" && 
-      <section className="schedule">
 
-      {/* <RecipeCardItems recipes={recipes}/> */}
-
-      <RecipeDetail 
-        recipe={recipeDescription} 
-        comments={comments}
-        />
-
-        {/* <Feeds />
-
-        <SearchBar/>
-        <RecipeCard/>
-        <SignUpLogInPage/>
-        <Post/>
-
-        <RecipeDetail 
-        recipe={recipeDescription} 
-        comments={comments}
-        />
-        <div className='App'>
-          <div id='signInDiv'></div>
-        </div> */}
-        </section>
-      }      
-     
     </main>
+  
+
   );
 
 }

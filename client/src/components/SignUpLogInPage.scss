@@ -1,4 +1,11 @@
-
+.login_container{
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  z-index: 15;
+  top: 40%;
+  left: 50%;
+}
 .signin_login{
   display: flex;
   flex-direction: column;
@@ -9,15 +16,15 @@
   border-bottom: 1px solid grey;
 }
 
-.signin_login input[type=text]{
+.signin_login input[type=email]{
   width: 600px;
   height: 60px;
   font-size: 40px;
   letter-spacing: 2px;
   text-align: center;
-  
+  color: gray;
 }
-.signin_login input[type=text]::placeholder{
+.signin_login input[type=email]::placeholder{
   opacity: 30%;
 }
 

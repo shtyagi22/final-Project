@@ -16,7 +16,7 @@ function PreviousPost(props){
 
   return(
     <li>
-      <section class="comment-item_container">
+      <section class="post-item_container">
         <div className="left-side">
           <img alt="profile_img" src={props.post.userImage}/>
         </div>
