@@ -27,13 +27,17 @@ function LoginOptions(props){
   const handleCallbackResponse =(response) =>{
     console.log("credential", response.credential)
     const userObject = jwt_decode(response.credential);
+    console.log(userObject)
     const newUser = {
       name: `${userObject.name}`,
       image: userObject.picture,
-      email: userObject.email
+      email: userObject.email,
+      password: userObject.sub
     }
+    
     if(userObject){
       setUser(newUser)
+      props.handleUser(newUser);
       window.location = "/"
     }
   }

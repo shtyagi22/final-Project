@@ -5,6 +5,7 @@ import "./AddComment.scss"
 function AddComment(props){
 
   const [showAddComment, setShowAddComment] = useState(false)
+  const [strInput,setStrInput] = useState("")
   const [rating,setRating]= useState(0)
 
   const onPointerEnter = () => console.log('Enter')
@@ -14,7 +15,15 @@ function AddComment(props){
   }
 
   const handleComment =()=>{
-    const comment
+
+    const comment ={
+      comment: strInput,
+      rating:rating
+    }
+    props.onComment(comment)
+
+    setRating(0);
+    setStrInput("");
   }
 
   return (
@@ -40,14 +49,18 @@ function AddComment(props){
           /* Available Props */
         />
         </div>
-        <form>
-          <textarea autoFocus placeholder="Write your review or comment here"></textarea>
-        </form>
-        <div className="submit_cancel">
-        <button>Submit</button>
-        <span onClick={()=>setShowAddComment(false)}>Cancel</span>
+        <form onSubmit={(e)=>e.preventDefault()}>
+          <textarea autoFocus placeholder="Write your review or comment here" 
+          onChange={(e)=>setStrInput(e.target.value)}
+          value={strInput}></textarea>
+        
+          <div className="submit_cancel">
+            <button onClick={handleComment} disabled={strInput.length===0}>Submit</button>
+            <span onClick={()=>setShowAddComment(false)}>Cancel</span>
+          </div>
+          </form>
         </div>
-        </div>
+
 
       }
 

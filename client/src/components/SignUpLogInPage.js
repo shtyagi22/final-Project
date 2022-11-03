@@ -20,7 +20,8 @@ function SignUpLogInPage(props){
       name,email,image:"https://soccerpointeclaire.com/wp-content/uploads/2021/06/default-profile-pic-e1513291410505.jpg"
     }
     setUser(newUser)
-    window.location = "/"
+    props.handleUser(newUser);
+    // window.location = "/"
   }
 
   return (

@@ -23,7 +23,7 @@ function Post(props){
       const formData = new FormData();
       formData.append('my-image-file', event.target.files[0], event.target.files[0].name);
       setFileState({
-        selectedFile:event.target.files[0],
+        selectedFile:formData,
         image: URL.createObjectURL(event.target.files[0])
       })
     }
@@ -36,10 +36,11 @@ function Post(props){
     if(inputStr.length){
       const newPostCreated = {
         postMessage: inputStr,
-        postImage: fileState
+        postImage: fileState.selectedFile
       }
   
-      props.OnPost(newPostCreated)
+      // props.OnPost(newPostCreated)
+      props.onNewPost(newPostCreated)
   
       setFileState({selectedFile:null,image:""});
       setInputStr("")
