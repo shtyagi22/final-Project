@@ -1,6 +1,7 @@
 
 import "./SignUpLogInButton.scss"
 import './App.scss';
+import {Link} from 'react-router-dom'
 
 function SignUpLogInButton() {
   return (

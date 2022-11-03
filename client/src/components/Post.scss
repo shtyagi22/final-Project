@@ -1,6 +1,7 @@
 .new_post{
   display: flex;
   flex-direction: column;
+  margin-bottom: 30px;
 }
 .prof_pic{
   border: none;
@@ -21,6 +22,7 @@
   flex-direction: row;
   justify-content: space-between;
   margin-top: 10px;
+  width: 600px;
 }
 
 .fa-regular{
@@ -33,6 +35,11 @@
   color: white;
   padding: 10px 25px;
   border-radius: 20px;
+ 
+}
+.pic_emo_but input[type=submit]:disabled{
+  // background-color:  #63b398 ;
+  opacity: 50%;
 }
 
 .pic_emo{
@@ -47,8 +54,13 @@
 }
 
 .img_preview img{
-  width: 100%;
+  max-width: 500px;
+  max-height: 500px;
+  width: auto;
+  height: auto;
   border: 1px solid black;
+  border-radius: 30px;
+  border: none;
 }
 
 .img_preview .btn_close{

@@ -14,6 +14,7 @@ router.get('/', function (req, res, next) {
 router.put('/api', async (req, res) => {
   const data = req.body;
   console.log("WE ARE IN THE SERVER", data);
+
   const fetch_ingredients = function (arr) {
     let ingredients = [];
     let string = "";
@@ -34,6 +35,7 @@ router.put('/api', async (req, res) => {
   const body = await response.json()
   console.log("response", body);
   res.json(body);
+
 });
 
 

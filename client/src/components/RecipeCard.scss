@@ -6,3 +6,22 @@
 .indvidual_card{
   margin: 10px;
 }
+
+.recipe_card_ul{
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 800px;
+}
+
+.card{
+  border: none;
+  padding-inline-start: 0px;
+}
+
+.card .card-body{
+  padding: 10px 0px;
+}
+
+.recipe_source{
+  text-transform: uppercase;
+}

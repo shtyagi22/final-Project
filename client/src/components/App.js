@@ -11,8 +11,14 @@ import axios from 'axios'
 import CommentItem from './CommentItem';
 import CommentItemList from './CommentItemList';
 import AddComment from './AddComment';
-import jwt_decode from 'jwt-decode'
+import LoginOptions from './LoginOptions';
 import RecipeDetail from './RecipeDetail';
+import Feeds from './Feeds';
+import RecipeCardItems from './RecipeCardItems';
+import {BrowserRouter,Route,Routes} from 'react-router-dom'
+import Home from './Home';
+import PreviousPost from './PreviousPost';
+
 
 function App() {
 
@@ -29,7 +35,29 @@ function App() {
       console.log(res.data.hits)
     ], [])
 
+  const [recipes, setRecipes] = useState([]);
+
+  // useEffect(()=>{
+  //   axios.get("/api").then((res)=>{
+  //     console.log(res.data.hits)
+  //     return res.data.hits
+
+  //   }).then((res)=>[
+  //     setRecipes(res)
+  //   ])
+
+
+  // },[])
+  const user = JSON.parse(localStorage.getItem("user"))
+  console.log(user)
+
+  function searchIngredients(arr_ingrediends){
+    console.log(arr_ingrediends)
+  
+  return axios.put("/api", arr_ingrediends).then((res)=>{
+    return res.data
   })
+}
 
 
   useEffect(() => {
@@ -70,6 +98,7 @@ function App() {
 
 
 
+
   const comments =
     [
       {
@@ -98,9 +127,83 @@ function App() {
 
   const navigate = (navigation) => {
     setNav(navigation)
-  }
 
-  console.log(nav)
+  const comments = 
+  [
+    {
+    id:1,
+    comment: {
+      image: "https://lh3.googleusercontent.com/a/ALm5wu1_-dgWtl7-p3AMWUcgUpYnJAV_zG0iMe59OOaH=s112-c-rw-v1-e365",
+      name: "Erica M.",
+      time: "2 years ago",
+      rating:4.5,
+      comment: "I agree with the other post about the dish needing more seasoning. I added additional seasoning but it still didn't do much for the flavor. The topping was also a little dry."
+    }
+  },
+  {
+    id:2,
+    comment: {
+      image: "https://graph.facebook.com/10156755061204968/picture?height=180&width=180",
+      name: "Nicole Wall",
+      time: "10 months ago",
+      rating:3,
+      comment: "i didn't look anything like the picture i might have done something wrong but it was still good."
+    }
+  }
+]
+
+const [posts,setPosts] = useState([
+  {
+    id:1,
+    username: "Michelle",
+    userImage:"https://graph.facebook.com/10208015133285596/picture?height=180&width=180",
+    post: "I’m so proud and lucky to be a native Californian because amazing produce is available at my local grocery store year-round. I didn’t even realize until recently that California grows more than a third of the country’s vegetables and two-thirds of the country’s",
+    postImage:"https://lh3.googleusercontent.com/RBFG1uWmfwY6gJEhEdGePV6mjXv4E5vdHhPFuuRsa59PRDtEomGu8WVD8VxGBhgmDE9EwYPWYt1UJIP-w54hC8slMBQI1p0hZtzW=w1280-h1280-c-rw-v1-e365"
+  },
+  {
+    id:2,
+    username: "Michelle",
+    userImage:"https://graph.facebook.com/10208015133285596/picture?height=180&width=180",
+    post: " made half the recipe and substituted half and half for the heavy cream… also used minced garlic from a jar and it was amazing!!! I will be making this more often for sure and save as a favorite!",
+    postImage:null
+  }
+])
+
+
+
+const handleUser = (newUser) => {
+  console.log(newUser)
+
+  axios.post('/users', newUser).then((res)=>{
+    return res
+  })
+
+}
+
+const handleComment = (comment) => {
+  comment.user = {user}
+  console.log(comment)
+  axios.post('/comments', comment).then((res)=>{
+    return res
+  })
+
+}
+const handlePosts = (newPost) => {
+  const newPostTobeAdded = {
+    id:3,
+    username:"Michelle",
+    userImage:"https://graph.facebook.com/10208015133285596/picture?height=180&width=180",
+    post: newPost.postMessage,
+    postImage: newPost.postImage.image
+
+  }
+  axios.post('/posts', newPost).then((res)=>{
+    return res
+  })
+
+  setPosts(prev => [newPostTobeAdded, ...prev])
+}
+
   return (
     <main className="layout">
       <section className="sidebar">
@@ -136,7 +239,29 @@ function App() {
         </section>
       }
 
+      </section>
+        <section className="main_side">
+          <BrowserRouter>
+            <Routes>
+              <Route path='/' element={<>
+              <Home/>
+              <RecipeCardItems recipes={recipes}/>
+              </>}/>
+              <Route path='/login' element={<LoginOptions handleUser={handleUser}/>}/>
+              <Route path='/feeds' element={<Feeds onNewPost={handlePosts} posts={posts}/>}/>
+              <Route path='/signin' element={<SignUpLogInPage handleUser={handleUser}/>}/>
+              <Route path='/search_pantry_ingredients' 
+              element={<PantryReady searchIngredients={searchIngredients}/> }/>
+              <Route path='/recipe_details' element={<RecipeDetail recipe={recipeDescription} comments={comments} 
+              onComment={handleComment}/>}/>
+            </Routes>
+          </BrowserRouter>
+        </section>
+
+
     </main>
+  
+
   );
 
 }
