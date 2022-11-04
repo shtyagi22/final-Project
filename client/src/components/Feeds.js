@@ -9,7 +9,7 @@ function Feeds (props){
     return(
       <main>
         <div>
-          <Post /*OnPost={onHandleNewPost}*/ onNewPost={props.onNewPost}/>
+          <Post onNewPost={props.onNewPost}/>
         </div>
         <div>
           <div className="previous_posts">

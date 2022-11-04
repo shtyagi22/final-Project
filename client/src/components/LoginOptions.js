@@ -6,9 +6,6 @@ import useLocalStorage from '../hooks/LocalStorageHook'
 
 function LoginOptions(props){
 
-  const [user,setUser] = useLocalStorage("user",{})
-  
-
   useEffect(()=>{
 
     /* global google */
@@ -36,7 +33,6 @@ function LoginOptions(props){
     }
     
     if(userObject){
-      setUser(newUser)
       props.handleUser(newUser);
       window.location = "/"
     }

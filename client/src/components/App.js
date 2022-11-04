@@ -18,24 +18,26 @@ import RecipeCardItems from './RecipeCardItems';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './Home';
 import PreviousPost from './PreviousPost';
+import useLocalStorage from '../hooks/LocalStorageHook';
 
 
 function App() {
 
   const [recipes, setRecipes] = useState([]);
 
-  // useEffect(()=>{
-  //   axios.get("/api").then((res)=>{
-  //     console.log(res.data.hits)
-  //     return res.data.hits
+  const [user,setUser] = useLocalStorage("user",0)
 
-  //   }).then((res)=>[
-  //     setRecipes(res)
-  //   ])
+  useEffect(()=>{
+    axios.get("/api").then((res)=>{
+      console.log(res.data.hits)
+      return res.data.hits
+      
+    }).then((res)=>[
+      setRecipes(res)
+    ])
 
-  // },[])
-  const user = JSON.parse(localStorage.getItem("user"))
-
+  },[])
+  
   function searchIngredients(arr_ingrediends) {
     console.log(arr_ingrediends)
 
@@ -100,19 +102,19 @@ function App() {
       postImage: null
     }
   ])
-
   const handleUser = (newUser) => {
     console.log(newUser)
 
     axios.post('/users', newUser).then((res) => {
       console.log("response", res);
+      setUser(res.data.id)
       return res
     })
 
   }
 
   const handleComment = (comment) => {
-    comment.user = { user }
+    comment.user = user
     console.log(comment)
     axios.post('/comments', comment).then((res) => {
       return res

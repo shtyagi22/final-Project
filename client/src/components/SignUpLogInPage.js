@@ -9,7 +9,7 @@ function SignUpLogInPage(props){
   const [email, setEmail] = useState("")
   const [name,setName] = useState("")
   const [transition, setTransition] = useState(false)
-  const [user,setUser] = useLocalStorage("user",{})
+ 
 
   const transit = () => {
     setTransition(true)
@@ -19,7 +19,6 @@ function SignUpLogInPage(props){
     const newUser = {
       name,email,image:"https://soccerpointeclaire.com/wp-content/uploads/2021/06/default-profile-pic-e1513291410505.jpg"
     }
-    setUser(newUser)
     props.handleUser(newUser);
     // window.location = "/"
   }
