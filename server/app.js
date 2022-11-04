@@ -30,5 +30,5 @@ app.use('/comments', commentsRouter);
 app.use('/posts', postsRouter);
 app.use('/postComments', postCommentsRouter);
 
-
+app.use(express.static('public'));
 module.exports = app;
