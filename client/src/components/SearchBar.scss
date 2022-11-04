@@ -73,3 +73,10 @@ outline: none;
   margin-top: 30px;
   text-align: center;
 }
+
+.recipe_suggestions{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

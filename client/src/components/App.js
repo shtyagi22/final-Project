@@ -19,6 +19,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './Home';
 import PreviousPost from './PreviousPost';
 import useLocalStorage from '../hooks/LocalStorageHook';
+import Navigation from './Navigation';
 
 
 function App() {
@@ -99,7 +100,7 @@ function App() {
       username: "Michelle",
       userImage: "https://graph.facebook.com/10208015133285596/picture?height=180&width=180",
       post: " made half the recipe and substituted half and half for the heavy cream… also used minced garlic from a jar and it was amazing!!! I will be making this more often for sure and save as a favorite!",
-      postImage: null
+      postImage: "//localhost:8080/1667594125945-images.jpeg"
     }
   ])
   const handleUser = (newUser) => {
@@ -122,49 +123,51 @@ function App() {
 
   }
   const handlePosts = (newPost) => {
-    const newPostTobeAdded = {
-      id: 3,
-      username: "Michelle",
-      userImage: "https://graph.facebook.com/10208015133285596/picture?height=180&width=180",
-      post: newPost.postMessage,
-      postImage: newPost.postImage
-    }
+
     const filename = newPost.postImage.name
     const file = newPost.postImage;
     const text = newPost.postMessage
 
     const formData = new FormData();
     formData.append('text', text)
-    formData.append('upload', file)
+    formData.append('photo', file)
     console.log(formData)
 
-    axios.post('/posts', {
-      headers: { 'Content-Type': 'multipart/form-data' },
-      body: formData,
+    axios.post('/posts',formData).then((res)=>{
+      const filepath = `localhost:8080${res.data.filepath.substring(6)}`
+      console.log("filePAth",filepath)
+      const post = {
+        id: 2,
+        username: "Michelle",
+        userImage: "https://graph.facebook.com/10208015133285596/picture?height=180&width=180",
+        post: res.data.text,
+        postImage: "//"+filepath
+      }
+      setPosts(prev => [post, ...prev])
     });
 
-    setPosts(prev => [newPostTobeAdded, ...prev])
+    
   }
 
   return (
     <main className="layout">
-      <section className="sidebar">
+   
+      <Navigation/>
 
-      </section>
       <section className="main_side">
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<>
-              <Home />
-              <RecipeCardItems recipes={recipes} />
+              <Home  recipes={recipes}/>
+              
             </>} />
             <Route path='/login' element={<LoginOptions handleUser={handleUser} />} />
             <Route path='/feeds' element={<Feeds onNewPost={handlePosts} posts={posts} />} />
             <Route path='/signin' element={<SignUpLogInPage handleUser={handleUser} />} />
             <Route path='/search_pantry_ingredients'
               element={<PantryReady searchIngredients={searchIngredients} />} />
-            <Route path='/recipe_details' element={<RecipeDetail recipe={recipeDescription} comments={comments}
-              onComment={handleComment} />} />
+            <Route path='/recipe_details/:id' element={<RecipeDetail
+             onComment={handleComment} recipes={recipes} comments={comments}/>}/>
           </Routes>
         </BrowserRouter>
       </section>
