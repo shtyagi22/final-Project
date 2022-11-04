@@ -18,7 +18,8 @@ function AddComment(props){
 
     const comment ={
       comment: strInput,
-      rating:rating
+      rating:rating,
+      recipeId:props.recipeId
     }
     props.onComment(comment)
     setTimeout(() => {
