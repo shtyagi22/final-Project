@@ -35,7 +35,6 @@ function App() {
 
   // },[])
   const user = JSON.parse(localStorage.getItem("user"))
-  console.log(user)
 
   function searchIngredients(arr_ingrediends){
     console.log(arr_ingrediends)
@@ -98,7 +97,7 @@ const [posts,setPosts] = useState([
     username: "Michelle",
     userImage:"https://graph.facebook.com/10208015133285596/picture?height=180&width=180",
     post: " made half the recipe and substituted half and half for the heavy cream… also used minced garlic from a jar and it was amazing!!! I will be making this more often for sure and save as a favorite!",
-    postImage:null
+    postImage:""
   }
 ])
 
@@ -127,13 +126,18 @@ const handlePosts = (newPost) => {
     username:"Michelle",
     userImage:"https://graph.facebook.com/10208015133285596/picture?height=180&width=180",
     post: newPost.postMessage,
-    postImage: newPost.postImage.image
+    postImage: newPost.postImage
   }
-  axios.post('/posts', newPost).then((res)=>{
-    return res
-  })
+  const filename = newPost.postImage.name
+  const file = newPost.postImage;
 
-  setPosts(prev => [newPostTobeAdded, ...prev])
+  const formData = new FormData();
+  formData.append('file',file,filename)
+  // formData.append('postMessage', newPost.postMessage)
+  axios.post('/posts', formData)
+  .then((res) => {
+    console.log(res.data);
+  });
 }
 
   return (
