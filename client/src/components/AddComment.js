@@ -21,7 +21,10 @@ function AddComment(props){
       rating:rating
     }
     props.onComment(comment)
-
+    setTimeout(() => {
+      setShowAddComment(false)
+    }, 500);
+    
     setRating(0);
     setStrInput("");
   }

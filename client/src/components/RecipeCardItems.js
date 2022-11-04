@@ -5,7 +5,7 @@ function RecipeCardItems(props){
  
   const recipeCardItems = props.recipes.map((e, index) => {
  
-    return <RecipeCard key={index} recipe={e.recipe}/>
+    return <RecipeCard key={index} recipe={e.recipe} index={index}/>
     
   })
   return (

@@ -2,35 +2,45 @@ import "./RecipeDetail.scss"
 import RecipeIngredients from "./RecipeIngredients"
 import CommentItemList from "./CommentItemList"
 import AddComment from "./AddComment"
+import {useParams} from 'react-router-dom'
+
 
 function RecipeDetail(props){
+
+  let {id} = useParams()
+  const recipe = props.recipes.find((e)=>e.recipe.uri.substring(51) === id).recipe
+ console.log(recipe)
+
   return(
+    
+    
     <div className="recipe_detail_container">
+      
       <header>
         <div className="header_container">
           <div className="left_side_overview">
-            <span className="recipe_name">{props.recipe.name}</span>
-            <span className="recipe_owner">{props.recipe.recipe_owner}</span>
+            <span className="recipe_name">{recipe.label}</span>
+            <span className="recipe_owner">{recipe.source}</span>
             <div className="details_calories_cooktime">
               <div className="div_no_ing">
-                <span className="no_ing">{props.recipe.no_ingredients}</span>
+                <span className="no_ing">{recipe.ingredientLines.length}</span>
                 <span>Ingredients</span>
               </div>
               <div className="div_time">
-                <span className="time">{props.recipe.cooking_time}</span>
+                <span className="time">{recipe.totalTime}</span>
                 <span>Minutes</span>
               </div>
               <div className="div_cal">
-                <span className="cal">{props.recipe.calories}</span>
+                <span className="cal">{Math.round(recipe.calories)}</span>
                 <span>calories</span>
               </div>
             </div>
             <div>
-              <a href={props.recipe.url}>Read Directions</a>
+              <a href={recipe.url}>Read Directions</a>
             </div>
           </div>
           <div className="right_side_picture">
-            <img alt="food_pic" src={props.recipe.image}/>
+            <img alt="food_pic" src={recipe.image}/>
           </div>
         </div>
       </header>
@@ -38,11 +48,11 @@ function RecipeDetail(props){
         
         <div className="recipe_description">
         <span>Description</span>
-        <p>{props.recipe.description}</p>
+        <p>{}</p>
         </div>
         <div className="recipe_ingredients">
         <span className="ingds_span">Ingredients</span>
-        <RecipeIngredients ingredients={props.recipe.ingredients}/>
+        <RecipeIngredients ingredients={recipe.ingredientLines}/>
         </div>
         <div className="add_to_shopping_cart">
 

@@ -1,0 +1,40 @@
+@import "../styles/mixins.scss";
+@import "../styles/variables.scss";
+
+.nav-list {
+  &__item {
+    @include fade;
+
+    color: rgba(58,131,120,255);
+    height: 5rem;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    &:hover {
+      background-color:rgba(58,131,120,255);
+      cursor: pointer;
+      color: $dark-background;
+    }
+
+    &--selected {
+      background-color: darken($white, 5%);
+      color: $dark-background;
+
+      &:hover {
+        background-color: darken($white, 5%);
+      }
+    }
+
+    &--full {
+      opacity: $inactive-opacity;
+    }
+  }
+}
+.user img{
+  width: 60px;
+  margin-left: 80px;
+  margin-top: 50px;
+  border-radius: 50%;
+}

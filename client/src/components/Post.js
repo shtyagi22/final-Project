@@ -19,11 +19,8 @@ function Post(props){
 
   const handleOnImageChange = (event) =>{
     if (event.target.files && event.target.files[0]) {
-
-      const formData = new FormData();
-      formData.append('my-image-file', event.target.files[0], event.target.files[0].name);
       setFileState({
-        selectedFile:formData,
+        selectedFile:event.target.files[0],
         image: URL.createObjectURL(event.target.files[0])
       })
     }
