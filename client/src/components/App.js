@@ -120,9 +120,14 @@ function App() {
 
   const handleComment = (comment) => {
     comment.userId = user
+
+    console.log("user", user)
+
     console.log(comment)
     axios.post('/comments', comment).then((res) => {
       return res
+    }).then((data) => {
+      console.log("comments data returned from server:", data)
     })
 
   }

@@ -1,7 +1,7 @@
-
-// const express = require('express');
-// const router = express.Router();
-// const posts = require('../db/queries/posts');
+const express = require('express');
+const router = express.Router();
+const posts = require('../db/queries/posts');
+const multer = require('multer')
 
 
 
@@ -16,32 +16,24 @@
 //   console.log(req.body)
 // })
 
-// module.exports = router;
-
-const express = require('express');
-const router = express.Router();
-const posts = require('../db/queries/posts');
-
-
-const multer = require('multer')
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'public')
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + '-' +file.originalname)
+    cb(null, Date.now() + '-' + file.originalname)
   }
 })
 
 const upload = multer({ storage: storage }).single('photo')
 
-router.post('/', upload, (req,res)=>{
+router.post('/', upload, (req, res) => {
   console.log(req.file.path)
   console.log(req.body.text)
   return res.json({
-    filepath:req.file.path,
-    text:req.body.text
+    filepath: req.file.path,
+    text: req.body.text
   })
 
 })
