@@ -11,13 +11,13 @@ import axios from "axios"
 
 function RecipeDetail(props){
 
- const [recipeI, setRecipeI] = useState()
+ const [recipe, setRecipe] = useState({})
   
   let {id} = useParams()
   useEffect(()=>{
     axios.get(`/recipe/${id}`).then((res)=>{
       // console.log("inside useeffect",res.data.hits[0])
-      setRecipeI(res.data.hits)
+      setRecipe(res.data.hits[0].recipe)
     }).catch((err)=>{
       console.log(err)
     })
@@ -25,10 +25,10 @@ function RecipeDetail(props){
 
 
 
-  const recipe = props.recipes.find((e)=> e.recipe.uri.substring(51)===id).recipe
-  const recipec = props.recipes.find((e)=> e.recipe.uri.substring(51)===id)
-  console.log("props things",recipec)
-  console.log('state things', recipeI)
+  // const recipe = props.recipes.find((e)=> e.recipe.uri.substring(51)===id).recipe
+  // const recipec = props.recipes.find((e)=> e.recipe.uri.substring(51)===id)
+  // console.log("props things",recipec)
+  // console.log('state things', recipeI)
     return(
    
       <main className="layout">
@@ -43,7 +43,7 @@ function RecipeDetail(props){
                   <span className="recipe_owner">{recipe.source}</span>
                   <div className="details_calories_cooktime">
                     <div className="div_no_ing">
-                      <span className="no_ing">{recipe.ingredientLines.length}</span>
+                      <span className="no_ing">{recipe.ingredientLines?.length}</span>
                       <span>Ingredients</span>
                     </div>
                     <div className="div_time">

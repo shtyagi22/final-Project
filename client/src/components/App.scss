@@ -40,6 +40,16 @@
   width: 100%;
 }
 
+.right_side_of_main {
+  background-color: $dark-background;
+  box-shadow: 17px 8px 0px rgba(grey, 0.5);
+  display: inline-block;
+  position: fixed;
+  min-width: 14rem;
+  padding: $spacing 0;
+  height: 100%;
+  overflow: auto;
+}
 .main_side_pantry {
   display: flex;
   flex-direction: column;

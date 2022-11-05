@@ -2,7 +2,7 @@ import './PreviousPost.scss'
 import {useState} from 'react'
 import { Link } from 'react-router-dom'
 
-function PreviousPost(props){
+function Reply(props){
 
   const [like, setLike] =  useState(0)
 
@@ -18,8 +18,6 @@ function PreviousPost(props){
 
   return(
     <li>
-      <div className='individual_post'>
-      <Link  to={`/posts/${props.post.id}`}>
       <section class="post-item_container">
       
         <div className="left-side">
@@ -57,9 +55,8 @@ function PreviousPost(props){
           </div>
         </div>
       </section>
-      </Link>
-      </div>
+  
     </li>
   )
 }
-export default PreviousPost;
+export default Reply;

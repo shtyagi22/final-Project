@@ -20,6 +20,7 @@ import Home from './Home';
 import PreviousPost from './PreviousPost';
 import useLocalStorage from '../hooks/LocalStorageHook';
 import Navigation from './Navigation';
+import PostAndReplies from './PostAndReplies';
 
 
 function App() {
@@ -173,7 +174,9 @@ function App() {
           <Route path='/search_pantry_ingredients'
             element={<PantryReady searchIngredients={searchIngredients}  recipes={searchedRecipeByIngredients} comments={comments}/>} />
           <Route path='/recipe_details/:id' element={<RecipeDetail
-            onComment={handleComment} recipes={[...recipes,...searchedRecipeByIngredients]} comments={comments}/>}/>
+            onComment={handleComment} comments={comments}/>}/>
+
+          <Route path='/posts/:id' element={<PostAndReplies/>} />
         </Routes>
       </BrowserRouter>
     </>

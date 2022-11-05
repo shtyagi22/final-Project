@@ -1,7 +1,7 @@
 import "./RecipeIngredients.scss"
 function RecipeIngredients (props){
 
-  const recipeIngredients = props.ingredients.map((e,index) => {
+  const recipeIngredients = props.ingredients?.map((e,index) => {
     return(
       <li key={index}>
       <div className="recipe_ingredient">
