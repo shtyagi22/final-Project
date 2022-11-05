@@ -10,7 +10,7 @@ function Home(props){
     <Navigation/>
       <section className="main_side">
       <div className="home_container">
-        <SearchBar/>
+        <SearchBar handleHomeSearch={props.handleHomeSearch}/>
       <div className="recipe_suggestions">
         <div class="pantry_ready_or_inspiration" >
           <div className="">

@@ -3,15 +3,17 @@ import { useEffect, useState } from "react";
 import "./SearchBar.scss"
 
 
-function SearchBar(){
+function SearchBar(props){
 
   const [strInput,setStrInput] = useState("")
-
+  // 
   const handleSubmit =(event)=>{
     event.preventDefault();
     
     axios.put('/recipe', {searchParam:strInput}).then((res)=>{
-      console.log(res.data)
+      return res.data.hits
+    }).then((data)=>{
+      props.handleHomeSearch(data)
     })
   }
 

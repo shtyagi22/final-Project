@@ -154,9 +154,10 @@ function App() {
         postImage: "//"+filepath
       }
       setPosts(prev => [post, ...prev])
-    });
-
-    
+    }); 
+  }
+  const handleHomeSearch = (recipesFromSearch) =>{
+    setRecipes(recipesFromSearch)
   }
 
   return (
@@ -165,7 +166,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<>
-            <Home  recipes={recipes}/>
+            <Home  recipes={recipes} handleHomeSearch={handleHomeSearch}/>
             
           </>} />
           <Route path='/login' element={<LoginOptions handleUser={handleUser} />} />
