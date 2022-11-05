@@ -49,5 +49,7 @@ router.get('/api', async (req, res) => {
 
 });
 
+router.get('/api/:id')
+
 
 module.exports = router;
