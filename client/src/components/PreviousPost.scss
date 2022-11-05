@@ -9,7 +9,7 @@
   border-top: 1px solid rgb(226, 222, 222);
   cursor: pointer;
 }
-.comment-item_container:hover{
+.post-item_container:hover{
   background: #f7faf9;
   
 }
@@ -65,6 +65,9 @@
   height: auto;
   border-radius: 20px;
   margin-bottom: 15px;
+}
+.post_image{
+  text-align: center;
 }
 
 .heart_div button{

@@ -1,11 +1,17 @@
-.signup{
-  border-radius: 20px;
+.signup a{
+  display: block;
+  margin-top: 30px;
   background-color: rgba(58,131,120,255);
-  color: white; 
-  margin-top: 20px;
-  padding: 10px 15px;
-  width: 150px;
-  margin: 20px auto;
+  width: 120px;
   text-align: center;
-  cursor: pointer;
-}
+  padding-top: 8px;
+  height: 40px;
+  
+  text-decoration: none;
+  color: white;
+  border-radius: 20px;
+  margin-left: 50px;
+  margin-bottom: 50px;
+ }
+
+

@@ -2,8 +2,9 @@
 @import "../styles/variables.scss";
 
 .nav-list {
-  &__item {
+  &__item a{
     @include fade;
+    text-decoration: none;
 
     color: rgba(58,131,120,255);
     height: 5rem;

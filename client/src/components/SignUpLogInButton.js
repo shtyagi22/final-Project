@@ -1,13 +1,15 @@
 
 import "./SignUpLogInButton.scss"
 import './App.scss';
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 
 function SignUpLogInButton() {
   return (
+    
     <div className="sidebar--centered signup">
-      Sign Up / Log in
+     <NavLink to='/login'>Sign Up / Log in</NavLink>
     </div>
+    
   );
 
 }

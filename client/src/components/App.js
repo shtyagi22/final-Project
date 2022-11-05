@@ -25,17 +25,18 @@ import Navigation from './Navigation';
 function App() {
 
   const [recipes, setRecipes] = useState([]);
+  const [searchedRecipeByIngredients, setSearchedRecipeByIngredients] = useState([]);
 
   const [user,setUser] = useLocalStorage("user",0)
 
   useEffect(()=>{
     axios.get("/api").then((res)=>{
-      console.log(res.data.hits)
+      // console.log(res.data.hits)
       return res.data.hits
       
-    }).then((res)=>[
+    }).then((res)=>{
       setRecipes(res)
-    ])
+  })
 
   },[])
   
@@ -43,7 +44,10 @@ function App() {
     console.log(arr_ingrediends)
 
     return axios.put("/api", arr_ingrediends).then((res) => {
-      return res.data
+      return res.data.hits
+    }).then((res)=>{
+      console.log(res)
+      setSearchedRecipeByIngredients(res)
     })
   }
 
@@ -115,7 +119,7 @@ function App() {
   }
 
   const handleComment = (comment) => {
-    comment.user = user
+    comment.userId = user
     console.log(comment)
     axios.post('/comments', comment).then((res) => {
       return res
@@ -150,30 +154,24 @@ function App() {
   }
 
   return (
-    <main className="layout">
-   
-      <Navigation/>
-
-      <section className="main_side">
-        <BrowserRouter>
-          <Routes>
-            <Route path='/' element={<>
-              <Home  recipes={recipes}/>
-              
-            </>} />
-            <Route path='/login' element={<LoginOptions handleUser={handleUser} />} />
-            <Route path='/feeds' element={<Feeds onNewPost={handlePosts} posts={posts} />} />
-            <Route path='/signin' element={<SignUpLogInPage handleUser={handleUser} />} />
-            <Route path='/search_pantry_ingredients'
-              element={<PantryReady searchIngredients={searchIngredients} />} />
-            <Route path='/recipe_details/:id' element={<RecipeDetail
-             onComment={handleComment} recipes={recipes} comments={comments}/>}/>
-          </Routes>
-        </BrowserRouter>
-      </section>
-
-    </main>
-
+  
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<>
+            <Home  recipes={recipes}/>
+            
+          </>} />
+          <Route path='/login' element={<LoginOptions handleUser={handleUser} />} />
+          <Route path='/feeds' element={<Feeds onNewPost={handlePosts} posts={posts} />} />
+          <Route path='/signin' element={<SignUpLogInPage handleUser={handleUser} />} />
+          <Route path='/search_pantry_ingredients'
+            element={<PantryReady searchIngredients={searchIngredients}  recipes={searchedRecipeByIngredients} comments={comments}/>} />
+          <Route path='/recipe_details/:id' element={<RecipeDetail
+            onComment={handleComment} recipes={recipes} comments={comments}/>}/>
+        </Routes>
+      </BrowserRouter>
+    </>
 
   );
 
