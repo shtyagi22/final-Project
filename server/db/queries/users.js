@@ -2,7 +2,7 @@ const db = require('../../configs/db.config');
 
 const createUser = (userParams) => {
   console.log("userparams from createUser:", userParams);
-  return db.query("INSERT INTO users (fullname, email, password) VALUES ($1, $2, $3) returning *", [userParams.name, userParams.email, userParams.password])
+  return db.query("INSERT INTO users (fullname, email, password, image) VALUES ($1, $2, $3, $4) returning *", [userParams.name, userParams.email, userParams.password, userParams.image])
     .then(data => {
       console.log("create user data.rows:", data.rows[0]);
       return data.rows[0];
