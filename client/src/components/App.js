@@ -173,7 +173,7 @@ function App() {
           <Route path='/search_pantry_ingredients'
             element={<PantryReady searchIngredients={searchIngredients}  recipes={searchedRecipeByIngredients} comments={comments}/>} />
           <Route path='/recipe_details/:id' element={<RecipeDetail
-            onComment={handleComment} recipes={recipes} comments={comments}/>}/>
+            onComment={handleComment} recipes={[...recipes,...searchedRecipeByIngredients]} comments={comments}/>}/>
         </Routes>
       </BrowserRouter>
     </>

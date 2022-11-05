@@ -139,10 +139,10 @@ function PantryReady(props){
               </div>
             }
           </section>
+          <RecipeCardItems recipes={props.recipes} preventScrollReset={true}/>
         </div>
       </section>
-      {/* <RecipeDetail recipes={props.recipes} comments={props.comments}/> */}
-      <RecipeCardItems recipes={props.recipes}/>
+      
        
     </main>
   )
