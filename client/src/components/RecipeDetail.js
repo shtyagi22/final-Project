@@ -12,12 +12,20 @@ import axios from "axios"
 function RecipeDetail(props){
 
  const [recipe, setRecipe] = useState({})
+ const [comments, setComments] = useState([])
+
+  const user= JSON.parse(localStorage.getItem("user"))
   
   let {id} = useParams()
   useEffect(()=>{
-    axios.get(`/recipe/${id}`).then((res)=>{
+    Promise.all([
+      axios.get(`/recipe/${id}`),
+      axios.get(`/comments/${id}`)
+    ])
+    .then((all)=>{
       // console.log("inside useeffect",res.data.hits[0])
-      setRecipe(res.data.hits[0].recipe)
+      setRecipe(all[0].data.hits[0].recipe)
+      setComments(all[1].data)
     }).catch((err)=>{
       console.log(err)
     })
@@ -25,10 +33,37 @@ function RecipeDetail(props){
 
 
 
+
+  // useEffect(()=>{
+  //   axios.get(`/comments/${id}`).then((res)=>{
+  //     return res
+  //   })
+  // },[])
+
+
+
   // const recipe = props.recipes.find((e)=> e.recipe.uri.substring(51)===id).recipe
   // const recipec = props.recipes.find((e)=> e.recipe.uri.substring(51)===id)
   // console.log("props things",recipec)
   // console.log('state things', recipeI)
+
+  const updateComments =(comment) =>{
+   const newcomment = {id: 14,
+    comment_text: comment.comment,
+    rating: comment.rating,
+    created_at: Date.now().toLocaleString() ,
+    api_recipe: comment.recipeId,
+    user_id: user.id,
+    fullname: user.fullname,
+    email: user.email,
+    password: null,
+    image: user.image
+  }
+
+ 
+
+    setComments([newcomment,...comments])
+  }
     return(
    
       <main className="layout">
@@ -82,8 +117,8 @@ function RecipeDetail(props){
               </div>
               <div className="recipe_reviews">
                 <span className="review_span">Reviews</span>
-                <AddComment onComment={props.onComment} recipeId={id}/>
-                <CommentItemList comments={props.comments}/> 
+                <AddComment onComment={props.onComment} recipeId={id} updateComments={updateComments}/>
+                <CommentItemList comments={comments}/> 
               </div>
               
             </main>

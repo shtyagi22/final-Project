@@ -6,6 +6,9 @@ import {Outlet,Link, NavLink} from 'react-router-dom'
 
 function Navigation(){
 
+  const user = JSON.parse(localStorage.getItem("user"))
+  console.log("From Navigation",user)
+
   return(
     <main className="layout">
       <section className="sidebar">
@@ -16,7 +19,8 @@ function Navigation(){
         />
 
         <div className="user">
-          <img alt="profile" src="https://lh3.googleusercontent.com/a/ALm5wu1_-dgWtl7-p3AMWUcgUpYnJAV_zG0iMe59OOaH=s112-c-rw-v1-e365"/>
+          <img alt="profile" src={user?.image}/>
+          <span>{user?.fullname}</span>
         </div>
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">

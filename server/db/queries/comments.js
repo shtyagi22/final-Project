@@ -17,9 +17,9 @@ const createComments = (userParams) => {
 
 const getCommentbyRecipeId = (recipeId) => {
   console.log("I am inside getCommentbyRecipeId:", recipeId);
-  return db.query("SELECT * FROM comments where api_recipe= $1;", [recipeId])
+  return db.query("SELECT c.*, u.* FROM comments c join users u on c.user_id = u.id where api_recipe = $1;", [recipeId.id])
     .then(data => {
-      console.log("data:", data)
+      
       console.log("data.rows:", data.rows)
 
       return data.rows;

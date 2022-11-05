@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';  
 import useLocalStorage from '../hooks/LocalStorageHook'
 import './SignUpLogInPage.scss'
 
@@ -9,6 +10,7 @@ function SignUpLogInPage(props){
   const [email, setEmail] = useState("")
   const [name,setName] = useState("")
   const [transition, setTransition] = useState(false)
+  const navigate = useNavigate();
  
 
   const transit = () => {
@@ -20,7 +22,7 @@ function SignUpLogInPage(props){
       name,email,image:"https://soccerpointeclaire.com/wp-content/uploads/2021/06/default-profile-pic-e1513291410505.jpg"
     }
     props.handleUser(newUser);
-    // window.location = "/"
+    navigate("/");
   }
 
   return (

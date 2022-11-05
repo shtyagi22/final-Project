@@ -32,7 +32,20 @@ function CommentItem(props){
     }
     return output
   }
+/*    id: 14,
+    comment_text: 'FROM TESTCOM',
+    rating: '4',
+    created_at: 2022-11-05T21:50:37.186Z,
+    api_recipe: 'f5c8effaeabe27f6ffe6ca6be47e1bb9',
+    user_id: 14,
+    fullname: 'TESTCOM',
+    email: 'TESTCOM@TESTCOM.COM',
+    password: null,
+    image: 'https://soccerpointeclaire.com/wp-content/uploads/2021/06/default-profile-pic-e1513291410505.jpg'
+  }
 
+ 
+ */
 
   return(
     <li>
@@ -42,11 +55,11 @@ function CommentItem(props){
         </div>
         <div className="right-side">
           <div className="name_and_time">
-          <span>{props.comment.name}</span> <span className="time_ago">{props.comment.time}</span>
+          <span>{props.comment.fullname}</span> <span className="time_ago">{props.comment.created_at}</span>
           </div>
           <div>{getStars(props.comment.rating)}</div>
           <div className="comment_text">
-            {props.comment.comment}
+            {props.comment.comment_text}
           </div>
         </div>
       </section>

@@ -28,7 +28,7 @@ function App() {
   const [recipes, setRecipes] = useState([]);
   const [searchedRecipeByIngredients, setSearchedRecipeByIngredients] = useState([]);
 
-  const [user,setUser] = useLocalStorage("user",0)
+  const [user,setUser] = useLocalStorage("user",{})
 
   useEffect(()=>{
     axios.get("/api").then((res)=>{
@@ -47,7 +47,7 @@ function App() {
     return axios.put("/api", arr_ingrediends).then((res) => {
       return res.data.hits
     }).then((res)=>{
-      console.log(res)
+      // console.log(res)
       setSearchedRecipeByIngredients(res)
     })
   }
@@ -112,17 +112,20 @@ function App() {
     console.log(newUser)
 
     axios.post('/users', newUser).then((res) => {
-      console.log("response", res);
-      setUser(res.data.id)
-      return res
+      setUser(res.data)
+      return res.data
+    }).then((data) => {
+      console.log("from server", data)
     })
 
   }
 
-  const handleComment = (comment) => {
-    comment.userId = user
+  console.log("user from userState",user)
 
-    console.log("user", user)
+  const handleComment = (comment) => {
+    comment.userId = user.id
+
+    console.log("in handlecomment ",user.id)
 
     console.log(comment)
     axios.post('/comments', comment).then((res) => {

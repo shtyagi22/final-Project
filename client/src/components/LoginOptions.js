@@ -1,11 +1,13 @@
 import {useEffect,useState} from 'react'
 import jwt_decode from 'jwt-decode'
 import "./LoginOptions.scss"
-import {Link, Route, Routes,redirect} from 'react-router-dom'
+import {Link, Route, Routes,redirect,useNavigate} from 'react-router-dom'
 import useLocalStorage from '../hooks/LocalStorageHook'
 
 function LoginOptions(props){
 
+  const navigate = useNavigate();
+ 
   useEffect(()=>{
 
     /* global google */
@@ -21,6 +23,7 @@ function LoginOptions(props){
     )
   },[])
 
+
   const handleCallbackResponse =(response) =>{
     console.log("credential", response.credential)
     const userObject = jwt_decode(response.credential);
@@ -34,7 +37,7 @@ function LoginOptions(props){
     
     if(userObject){
       props.handleUser(newUser);
-      window.location = "/"
+      navigate("/");
     }
   }
 

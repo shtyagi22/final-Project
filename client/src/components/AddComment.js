@@ -22,6 +22,7 @@ function AddComment(props){
       recipeId:props.recipeId
     }
     props.onComment(comment)
+    props.updateComments(comment)
     setTimeout(() => {
       setShowAddComment(false)
     }, 500);
