@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 
 
 
-router.post('/:id', async (req,res) => {
+router.get('/:id', async (req,res) => {
   console.log("params Id", req.params.id)
   const APP_id = "e7215228";
   const APP_key = "2f5c8ccb5407391f803663f04d6a1671";
@@ -15,4 +15,14 @@ router.post('/:id', async (req,res) => {
   res.json(body);
 })
 
+
+router.put('/', async (req,res) => {
+  console.log("from home search",req.body)
+  // const APP_id = "e7215228";
+  // const APP_key = "2f5c8ccb5407391f803663f04d6a1671";
+  // const response = await fetch(`https://api.edamam.com/search?app_id=${APP_id}&app_key=${APP_key}&q=${}`);
+  // const body = await response.json()
+  // console.log("response", body);
+  // res.json(body);
+})
 module.exports = router;
