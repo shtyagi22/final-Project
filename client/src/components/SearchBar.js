@@ -14,6 +14,7 @@ function SearchBar(props){
       return res.data.hits
     }).then((data)=>{
       props.handleHomeSearch(data)
+      setStrInput("")
     })
   }
 
@@ -24,7 +25,7 @@ function SearchBar(props){
         <i class="fa-solid fa-magnifying-glass"></i>
       </div>
       <form onSubmit={(event)=>handleSubmit(event)}>
-        <input type="text" autoFocus className="text_input" onChange={e => setStrInput(e.target.value)}></input>
+        <input type="text" autoFocus className="text_input" onChange={e => setStrInput(e.target.value)} value={strInput}></input>
       </form>
     </div>
   )

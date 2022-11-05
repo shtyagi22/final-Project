@@ -42,7 +42,7 @@ function App() {
   },[])
   
   function searchIngredients(arr_ingrediends) {
-    console.log(arr_ingrediends)
+    // console.log(arr_ingrediends)
 
     return axios.put("/api", arr_ingrediends).then((res) => {
       return res.data.hits
