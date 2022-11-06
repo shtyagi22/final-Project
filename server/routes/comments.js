@@ -6,17 +6,17 @@ const comments = require('../db/queries/comments');
 
 router.get('/:id', (req, res) => {
   console.log("req.params.id:", req.params.id)
-  const recipeId = req.params;
+  const recipeId = req.params.id;
   console.log("recipeId:", recipeId)
   comments.getCommentbyRecipeId(recipeId)
-  .then((data) => {
-    console.log("data returned from getCommentbyRecipeId:", data)
-    res.json(data);
-  });
+    .then((data) => {
+      console.log("data returned from getCommentbyRecipeId:", data)
+      res.json(data);
+    });
 });
 
 router.post("/", (req, res) => {
-  
+
   comments.createComments(req.body)
     .then(data => {
       console.log("data returned from createComments:", data)

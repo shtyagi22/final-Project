@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS post_comments CASCADE;
 CREATE TABLE post_comments (
   id SERIAL PRIMARY KEY,
   comment_text VARCHAR(255),
-  post_id INTEGER REFERENCES posts(id) ON DELETE CASCADE,
-  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  created_at TIMESTAMP
+  post_id INTEGER,-- REFERENCES posts(id) ON DELETE CASCADE,
+  user_id INTEGER,-- REFERENCES users(id) ON DELETE CASCADE,
+  created_at TIMESTAMP not null default CURRENT_TIMESTAMP
 );
