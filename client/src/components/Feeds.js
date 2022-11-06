@@ -3,7 +3,7 @@ import {useState,useEffect} from "react"
 import PreviousPostItems from "./PreviousPostItems"
 import Navigation from "./Navigation"
 import axios from 'axios';
-
+import TimeAgo from 'timeago-react';
 
 function Feeds (props){
 

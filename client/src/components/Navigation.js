@@ -19,6 +19,7 @@ function Navigation(){
         />
 
         <div className="user">
+          
           <img alt="profile" src={user?.image}/>
           <span>{user?.fullname}</span>
         </div>
@@ -30,6 +31,8 @@ function Navigation(){
          
           <li className="nav-list__item"><NavLink to="/search_pantry_ingredients" preventScrollReset={true}>Pantry-Ready Recipe</NavLink></li>
           <li className="nav-list__item"><NavLink to="/feeds" preventScrollReset={true}>My feeds</NavLink></li>
+          <li className="nav-list__item"><NavLink to="/" preventScrollReset={true}>About Us</NavLink></li>
+          <li className="nav-list__item"><NavLink to="/" preventScrollReset={true}>Contact Us</NavLink></li>
           </ul>
         </nav>
       </section>

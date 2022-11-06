@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./PantryReady.scss"
 import PantryIngredientList from "./PantryIngredientList";
 import SuggestionList from "./SuggestionList";
@@ -6,30 +6,39 @@ import Navigation from "./Navigation";
 import useLocalStorage from "../hooks/LocalStorageHook"
 import RecipeCardItems from "./RecipeCardItems";
 import RecipeDetail from "./RecipeDetail";
+import axios from "axios";
 function PantryReady(props){
-  const ingredients_array = [
-    {id:1,ingredient:"Rice"},
-    {id:2,ingredient:"Apple Juice"},
-    {id:3,ingredient:"Orange"},
-    {id:4,ingredient:"carrot"},
-    {id:5,ingredient:"Navy Beans"},
-    {id:6,ingredient:"Beans"},
-    {id:7,ingredient:"Basmatic Rice"},
-    {id:8,ingredient:"Milk"},
-    {id:9,ingredient:"Suasage"},
-    {id:10,ingredient:"Beef Sausage"},
-    {id:11,ingredient:"Tomato puree"},
-    {id:12,ingredient:"Chicken Broth"},
-    {id:13,ingredient:"Beef broth"},
-    {id:14,ingredient:"Lobster"},
-    {id:15,ingredient:"Bread"},
-    {id:16,ingredient:"Breadcrumbs"},
-    {id:17,ingredient:"Cheese"},
-    {id:18,ingredient:"Mozerella Cheese"},
-    {id:19,ingredient:"Chedda Cheese"},
-    {id:20,ingredient:"Pepperoni"},
-    {id:21,ingredient:"Olive oil"},
-  ]
+
+  useEffect(()=>{
+    axios.get('/ingredients').then((res)=>{
+      setIngredients_array(res.data)
+    })
+
+  },[])
+  const[ingredients_array,setIngredients_array] = useState([])
+  // const ingredients_array = [
+  //   {id:1,ingredient:"Rice"},
+  //   {id:2,ingredient:"Apple Juice"},
+  //   {id:3,ingredient:"Orange"},
+  //   {id:4,ingredient:"carrot"},
+  //   {id:5,ingredient:"Navy Beans"},
+  //   {id:6,ingredient:"Beans"},
+  //   {id:7,ingredient:"Basmatic Rice"},
+  //   {id:8,ingredient:"Milk"},
+  //   {id:9,ingredient:"Suasage"},
+  //   {id:10,ingredient:"Beef Sausage"},
+  //   {id:11,ingredient:"Tomato puree"},
+  //   {id:12,ingredient:"Chicken Broth"},
+  //   {id:13,ingredient:"Beef broth"},
+  //   {id:14,ingredient:"Lobster"},
+  //   {id:15,ingredient:"Bread"},
+  //   {id:16,ingredient:"Breadcrumbs"},
+  //   {id:17,ingredient:"Cheese"},
+  //   {id:18,ingredient:"Mozerella Cheese"},
+  //   {id:19,ingredient:"Chedda Cheese"},
+  //   {id:20,ingredient:"Pepperoni"},
+  //   {id:21,ingredient:"Olive oil"},
+  // ]
   const [showResults, setShowResults] = useState(false)
   const [input, setInput] = useState('')
   const [ingredients, setIngredients] = useLocalStorage("ingredients", [])

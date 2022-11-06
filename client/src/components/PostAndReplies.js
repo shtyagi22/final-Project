@@ -51,8 +51,10 @@ function PostAndReplies(props){
   }
  * 
  */
+  console.log("Lets.......................",post)
+
 const updateReplies = (replies) =>{
-  setReplies(replies)
+  setReplies(replies.reverse())
 }
 
  

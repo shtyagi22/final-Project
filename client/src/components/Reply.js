@@ -1,6 +1,7 @@
 import './PreviousPost.scss'
 import {useState} from 'react'
 import { Link } from 'react-router-dom'
+import TimeAgo from 'timeago-react';
 
 function Reply(props){
 
@@ -35,7 +36,14 @@ function Reply(props){
         </div>
         <div className="right-side">
           <div className="name_and_time">
-          <span>{user.fullname}</span> <span className="time_ago">{props.reply.created_at}</span>
+          <span>{user.fullname}</span> <span className="time_ago">
+            <TimeAgo
+              datetime={props.reply.created_at}
+              locale='en'
+            />
+            
+            
+            </span>
           </div>
           <div className="comment_text">
             {props.reply.comment_text}
