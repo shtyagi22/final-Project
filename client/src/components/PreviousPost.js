@@ -4,6 +4,18 @@ import { Link } from 'react-router-dom'
 
 function PreviousPost(props){
 
+      /*
+  {
+    id: 1,
+    post_text: 'ae are still testing',
+    image: 'public/1667706367212-IG1C11_Roast-Turkey.jpeg',
+    user_id: 1,
+    fullname: 'ekene ezeani',
+    profile_image: 'https://lh3.googleusercontent.com/a/ALm5wu1_-dgWtl7-p3AMWUcgUpYnJAV_zG0iMe59OOaH=s96-c'
+  }
+    
+    */
+
   const [like, setLike] =  useState(0)
 
   const addLike = (e) =>{
@@ -15,6 +27,14 @@ function PreviousPost(props){
     }
 
   }
+  const getFilePath = (str) => {
+
+    const filepath = `//localhost:8080${str.substring(6)}`
+
+    return filepath;
+  }
+
+  console.log("checking path",getFilePath(props.post.image))
 
   return(
     <li>
@@ -23,19 +43,19 @@ function PreviousPost(props){
       <section class="post-item_container">
       
         <div className="left-side">
-          <img alt="profile_img" src={props.post.userImage}/>
+          <img alt="profile_img" src={props.post.profile_image}/>
         </div>
         <div className="right-side">
           <div className="name_and_time">
-          <span>{props.post.username}</span> <span className="time_ago">3 days ago</span>
+          <span>{props.post.fullname}</span> <span className="time_ago">3 days ago</span>
           </div>
           <div className="comment_text">
-            {props.post.post}
+            {props.post.post_text}
           </div>
           {
-            props.post.postImage &&
+            props.post.image &&
             <div className='post_image'>
-              <img alt="post_img" src={props.post.postImage}/>
+              <img alt="post_img" src={getFilePath(props.post.image)}/>
             </div>
           }
 

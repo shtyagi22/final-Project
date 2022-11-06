@@ -69,9 +69,26 @@ outline: none;
   
 }
 
+
 .pantry_ready_or_inspiration p{
   margin-top: 30px;
   text-align: center;
+}
+.pantry_ready_or_inspiration a{
+   margin-top: 15px;
+  padding: 10px 30px;
+  border-radius: 20px;
+  color: white;
+  border: none;
+  background-color: rgba(58,131,120,255) ;
+  font-size: 14px;
+  margin: 15px;
+  text-decoration: none;
+  
+}
+
+.pantry_ready_or_inspiration a:hover{
+  color: white;
 }
 
 .recipe_suggestions{
