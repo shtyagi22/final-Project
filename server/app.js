@@ -9,6 +9,8 @@ const commentsRouter = require('./routes/comments');
 const postsRouter = require('./routes/posts');
 const postCommentsRouter = require('./routes/postComments');
 const recipeRouter = require('./routes/recipe')
+const ingredientsRouter = require('./routes/ingredients')
+
 
 
 
@@ -31,6 +33,8 @@ app.use('/comments', commentsRouter);
 app.use('/posts', postsRouter);
 app.use('/postComments', postCommentsRouter);
 app.use('/recipe', recipeRouter);
+app.use('/ingredients', ingredientsRouter);
+
 
 app.use(express.static('public'));
 module.exports = app;
