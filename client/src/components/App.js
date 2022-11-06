@@ -147,17 +147,8 @@ function App() {
     formData.append('userId', user.id)
     console.log(formData)
 
-    axios.post('/posts',formData).then((res)=>{
-      const filepath = `localhost:8080${res.data.filepath.substring(6)}`
-      console.log("filePAth",filepath)
-      const post = {
-        id: 2,
-        username: "Michelle",
-        userImage: "https://graph.facebook.com/10208015133285596/picture?height=180&width=180",
-        post: res.data.text,
-        postImage: "//"+filepath
-      }
-      setPosts(prev => [post, ...prev])
+    return axios.post('/posts',formData).then((res)=>{
+        return res.data
     }); 
   }
   const handleHomeSearch = (recipesFromSearch) =>{

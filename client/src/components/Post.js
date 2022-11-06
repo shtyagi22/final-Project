@@ -1,6 +1,7 @@
-import React,{ useState } from 'react';
+import React,{ useEffect, useState } from 'react';
 import Picker from 'emoji-picker-react';
 import "./Post.scss"
+
 
 
 
@@ -10,6 +11,8 @@ function Post(props){
   const [inputStr, setInputStr] = useState('');
   const [showPicker, setShowPicker] = useState(false);
   const [fileState, setFileState] = useState({selectedFile:null,image:""})
+
+
 
   const onEmojiClick = (emojiObject, event) => {
     setInputStr(prevInput => prevInput + emojiObject.emoji);
@@ -37,7 +40,9 @@ function Post(props){
       }
   
       // props.OnPost(newPostCreated)
-      props.onNewPost(newPostCreated)
+      props.onNewPost(newPostCreated).then((data)=>{
+          props.updatePosts(data)
+      })
   
       setFileState({selectedFile:null,image:""});
       setInputStr("")

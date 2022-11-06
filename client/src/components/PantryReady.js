@@ -93,7 +93,7 @@ function PantryReady(props){
         <div className="pantry_ready">
           <section>
             <h1>Cook with what you have</h1>
-            <p>Don't want to go to the store? No problem! Enter the ingredients you have on hand, and we'll show you recipes you could make. For best results, enter 10 or more ingredients below, including staples like salt, pepper, and olive oil. The ingredients you add here will sync with your Virtual Pantry on Android. Any changes in one will update the other.</p>
+            <p>Don't want to go to the store? No problem! Enter the ingredients you have on hand, and we'll show you recipes you could make. For best results, enter 10 or more ingredients below, including staples like salt, pepper, and olive oil. The ingredients you add here will be used to make a search in our recipe database to give ideas of delicious recipes to cook.</p>
           </section>
           <section className="pantry_search_container">
             {!showResults &&
