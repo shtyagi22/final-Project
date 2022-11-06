@@ -144,6 +144,7 @@ function App() {
     const formData = new FormData();
     formData.append('text', text)
     formData.append('photo', file)
+    formData.append('userId', user.id)
     console.log(formData)
 
     axios.post('/posts',formData).then((res)=>{
