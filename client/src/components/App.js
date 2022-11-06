@@ -120,7 +120,12 @@ function App() {
 
   }
 
-  console.log("user from userState",user)
+
+  const handlePostReplies = (replies) => {
+
+  }
+
+  // console.log("user from userState",user)
 
   const handleComment = (comment) => {
     comment.userId = user.id
@@ -131,7 +136,7 @@ function App() {
     axios.post('/comments', comment).then((res) => {
       return res
     }).then((data) => {
-      console.log("comments data returned from server:", data)
+      // console.log("comments data returned from server:", data)
     })
 
   }
@@ -172,7 +177,7 @@ function App() {
           <Route path='/recipe_details/:id' element={<RecipeDetail
             onComment={handleComment} comments={comments}/>}/>
 
-          <Route path='/posts/:id' element={<PostAndReplies/>} />
+          <Route path='/posts/:id' element={<PostAndReplies handlePostReplies={handlePostReplies}/>} />
         </Routes>
       </BrowserRouter>
     </>

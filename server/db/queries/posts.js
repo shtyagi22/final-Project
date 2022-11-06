@@ -1,7 +1,7 @@
 const db = require('../../configs/db.config');
 
-const getAllPosts = () => {
-  return db.query("SELECT * FROM posts;").then(data => {
+const getPostByPostId = (id) => {
+  return db.query("SELECT * FROM posts where id = $1;",[id]).then(data => {
     return data.rows;
   })
 }
@@ -25,4 +25,4 @@ const getPostsbyUserId = (userId) => {
     });
 };
 
-module.exports = { getAllPosts, createPosts, getPostsbyUserId }
+module.exports = { getPostByPostId, createPosts, getPostsbyUserId }

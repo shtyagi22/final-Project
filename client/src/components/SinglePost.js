@@ -52,15 +52,15 @@ function PreviousPost(props){
   return(
     <li>
       <div className='individual_post'>
-      <Link  to={`/posts/${props.post.id}`}>
+     
       <section class="post-item_container">
       
         <div className="left-side">
-          <img alt="profile_img" src={props.post.profile_image}/>
+          <img alt="profile_img" src={user.image}/>
         </div>
         <div className="right-side">
           <div className="name_and_time">
-          <span>{props.post.fullname}</span> <span className="time_ago">3 days ago</span>
+          <span>{user.fullname}</span> <span className="time_ago">3 days ago</span>
           </div>
           <div className="comment_text">
             {props.post.post_text}
@@ -90,7 +90,7 @@ function PreviousPost(props){
           </div>
         </div>
       </section>
-      </Link>
+
       </div>
     </li>
   )

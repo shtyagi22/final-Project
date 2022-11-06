@@ -31,12 +31,13 @@ function ReplyToPost(props){
     event.preventDefault();
     if(inputStr.length){
       const newReplyCreated = {
+        postid:props.postId,
         postMessage: inputStr,
         postImage: fileState.selectedFile
       }
   
       // props.OnPost(newPostCreated)
-      props.onNewReply(newReplyCreated)
+      props.handlePostReplies(newReplyCreated)
   
       setFileState({selectedFile:null,image:""});
       setInputStr("")
@@ -51,7 +52,7 @@ function ReplyToPost(props){
       </div>
       <form>
         <div className="new_post_text">
-          <textarea placeholder="What's cooking?" value={inputStr}
+          <textarea placeholder="Say something ..." value={inputStr}
           onChange={event=>setInputStr(event.target.value)}></textarea>
           
           {

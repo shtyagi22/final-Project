@@ -15,6 +15,15 @@ router.get('/:id', (req, res) => {
     });
 });
 
+router.get('/postreplies/:id', (req,res) => {
+  console.log("post replies req.params.id:", req.params.id)
+  posts.getPostByPostId(req.params.id)
+  .then((data) => {
+    console.log("data returned from getPostByPostId:", data)
+    res.json(data);
+  });
+})
+
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {

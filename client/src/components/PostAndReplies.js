@@ -1,44 +1,54 @@
-import { useState } from "react"
+import axios from "axios"
+import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import Navigation from "./Navigation"
 import PreviousPost from "./PreviousPost"
 import PreviousPostItems from "./PreviousPostItems"
 import ReplyToPost from "./ReplyToPost"
+import SinglePost from "./SinglePost"
 
 
-function PostAndReplies(){
+function PostAndReplies(props){
 
   let {id} = useParams()
 
+  const [post, setPost] = useState({})
 
-  const [post, setPost] = useState(
-    {
-      id: 1,
-      username: "Michelle",
-      userImage: "https://graph.facebook.com/10208015133285596/picture?height=180&width=180",
-      post: "I’m so proud and lucky to be a native Californian because amazing produce is available at my local grocery store year-round. I didn’t even realize until recently that California grows more than a third of the country’s vegetables and two-thirds of the country’s",
-      postImage: "https://lh3.googleusercontent.com/RBFG1uWmfwY6gJEhEdGePV6mjXv4E5vdHhPFuuRsa59PRDtEomGu8WVD8VxGBhgmDE9EwYPWYt1UJIP-w54hC8slMBQI1p0hZtzW=w1280-h1280-c-rw-v1-e365"
+  useEffect(()=>{
+    axios.get(`/posts/postreplies/${id}`).then((res)=>{
+      console.log(res.data)
+      setPost(res.data[0])
     })
+  })
+/**
+ *{
+    id: 3,
+    post_text: 'ae are still testing',
+    image: 'public/1667706367212-IG1C11_Roast-Turkey.jpeg',
+    user_id: 1
+  }
+ * 
+ */
 
-
-  
+ 
   return(
+
     <main className="layout">
     <Navigation/>
     <section className="main_side">
       <main>
         <div>
-          <h1>{id}</h1>
-        <PreviousPost post={post}/>
+        
+        <SinglePost post={post}/>
         </div>
         <div>
-          <ReplyToPost/>
+          <ReplyToPost handlePostReplies={props.handlePostReplies} postId={id}/>
         </div>
-        <div>
+        {/* <div>
           <div className="previous_posts">
-            {/* <PreviousPostItems/> */}
+            <PreviousPostItems/> 
           </div>
-        </div>
+        </div>  */}
       </main>
     </section>
     </main>
