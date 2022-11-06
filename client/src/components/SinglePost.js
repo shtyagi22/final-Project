@@ -47,7 +47,7 @@ function PreviousPost(props){
     return filepath;
   }
 
-  console.log("checking path",getFilePath(props.post.image))
+  // console.log("checking path",getFilePath(props.post.image))
 
   return(
     <li>

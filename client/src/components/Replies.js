@@ -4,8 +4,8 @@ import './PreviousPost.scss'
 
 function Replies(props){
 
-  const replies = props.posts.map((e) =>{
-    return <Reply post={e} key={e.id}/>
+  const replies = props.replies.map((e) =>{
+    return <Reply reply={e} key={e.id}/>
   })
 
   return(

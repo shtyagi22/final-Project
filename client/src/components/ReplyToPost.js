@@ -10,6 +10,8 @@ function ReplyToPost(props){
   const [showPicker, setShowPicker] = useState(false);
   const [fileState, setFileState] = useState({selectedFile:null,image:""})
 
+  const user = JSON.parse(localStorage.getItem('user'))
+
   const onEmojiClick = (emojiObject, event) => {
     setInputStr(prevInput => prevInput + emojiObject.emoji);
   //  console.log("emoji Object", event, emojiObject)
@@ -33,11 +35,13 @@ function ReplyToPost(props){
       const newReplyCreated = {
         postid:props.postId,
         postMessage: inputStr,
-        postImage: fileState.selectedFile
+        userId:user.id
       }
   
       // props.OnPost(newPostCreated)
-      props.handlePostReplies(newReplyCreated)
+      props.handlePostReplies(newReplyCreated).then((data) => {
+        props.updateReplies(data)
+      })
   
       setFileState({selectedFile:null,image:""});
       setInputStr("")

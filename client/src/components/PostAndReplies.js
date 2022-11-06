@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom"
 import Navigation from "./Navigation"
 import PreviousPost from "./PreviousPost"
 import PreviousPostItems from "./PreviousPostItems"
+import Replies from "./Replies"
 import ReplyToPost from "./ReplyToPost"
 import SinglePost from "./SinglePost"
 
@@ -13,13 +14,34 @@ function PostAndReplies(props){
   let {id} = useParams()
 
   const [post, setPost] = useState({})
+  const [replies, setReplies] =useState([])
+
+  // useEffect(()=>{
+  //   axios.get(`/posts/postreplies/${id}`).then((res)=>{
+  //     console.log(res.data)
+  //     setPost(res.data[0])
+  //   })
+  // },[])
+
+  //   useEffect(()=>{
+  //   axios.get(`/postComments/${id}`).then((res)=>{
+  //     console.log(res.data)
+  //     setReplies(res.data)
+  //   })
+  // },[])
 
   useEffect(()=>{
-    axios.get(`/posts/postreplies/${id}`).then((res)=>{
-      console.log(res.data)
-      setPost(res.data[0])
+    
+    Promise.all([
+      axios.get(`/posts/postreplies/${id}`),
+      axios.get(`/postComments/${id}`),
+    ]).then((all)=>{
+      console.log(all[0].data)
+      setPost(all[0].data[0])
+      setReplies(all[1].data)
     })
-  })
+  },[])
+
 /**
  *{
     id: 3,
@@ -29,6 +51,9 @@ function PostAndReplies(props){
   }
  * 
  */
+const updateReplies = (replies) =>{
+  setReplies(replies)
+}
 
  
   return(
@@ -42,13 +67,13 @@ function PostAndReplies(props){
         <SinglePost post={post}/>
         </div>
         <div>
-          <ReplyToPost handlePostReplies={props.handlePostReplies} postId={id}/>
+          <ReplyToPost handlePostReplies={props.handlePostReplies} updateReplies={updateReplies} postId={id}/>
         </div>
-        {/* <div>
+        <div>
           <div className="previous_posts">
-            <PreviousPostItems/> 
+            <Replies replies ={replies}/> 
           </div>
-        </div>  */}
+        </div> 
       </main>
     </section>
     </main>

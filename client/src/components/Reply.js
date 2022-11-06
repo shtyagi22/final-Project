@@ -4,6 +4,16 @@ import { Link } from 'react-router-dom'
 
 function Reply(props){
 
+  /**    
+   * id: 1,
+    comment_text: 'We should be good now😃',
+    post_id: 2,
+    user_id: 1,
+    created_at: 2022-11-06T06:09:49.516Z
+     */
+
+  const user = JSON.parse(localStorage.getItem('user'))
+
   const [like, setLike] =  useState(0)
 
   const addLike = (e) =>{
@@ -21,21 +31,21 @@ function Reply(props){
       <section class="post-item_container">
       
         <div className="left-side">
-          <img alt="profile_img" src={props.post.userImage}/>
+          <img alt="profile_img" src={user.image}/>
         </div>
         <div className="right-side">
           <div className="name_and_time">
-          <span>{props.post.username}</span> <span className="time_ago">3 days ago</span>
+          <span>{user.fullname}</span> <span className="time_ago">{props.reply.created_at}</span>
           </div>
           <div className="comment_text">
-            {props.post.post}
+            {props.reply.comment_text}
           </div>
-          {
+          {/* {
             props.post.postImage &&
             <div className='post_image'>
               <img alt="post_img" src={props.post.postImage}/>
             </div>
-          }
+          } */}
 
           <div className='like_comments'>
               <div className='comment_icon_count'>

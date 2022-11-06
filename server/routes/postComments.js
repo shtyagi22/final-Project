@@ -11,24 +11,29 @@ const postComments = require('../db/queries/postComments');
 //   })
 // });
 
-router.get('/:id', (req, res) => {
-  console.log("req.params.id:", req.params.id)
-  const postId = req.params.id;
-  console.log("postId:", postId)
-  comments.getPostCommentbyPostId(postId)
-    .then((data) => {
-      console.log("data returned from getPostCommentbyPostId:", data)
-      res.json(data);
-    });
-});
+  router.get('/:id', (req, res) => {
+    console.log("postId:", req.params.id)
+    postComments.getPostCommentbyPostId(req.params.id)
+      .then((data) => {
+        console.log("data returned from getPostCommentbyPostId:", data)
+        res.json(data);
+      });
+  });
 
 router.post("/", (req, res) => {
-
-  comments.createComments(req.body)
+console.log("post repliees from client",req.body)
+  postComments.createPostComments(req.body)
     .then(data => {
       console.log("data returned from createComments:", data)
 
+    }).then(()=>{
+      postComments.getPostCommentbyPostId(req.body.postid)
+      .then((data) => {
+        console.log("data returned from getPostCommentbyPostId:", data)
+        res.json(data);
+      });
     });
+
 });
 
 module.exports = router;

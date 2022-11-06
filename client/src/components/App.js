@@ -121,8 +121,13 @@ function App() {
   }
 
 
-  const handlePostReplies = (replies) => {
+  const handlePostReplies = (reply) => {
 
+    console.log("reply to post ",reply)
+    return axios.post('/postComments',reply).then((res)=>{
+      console.log("coming from handlePostReplies",res.data);
+      return res.data;
+    })
   }
 
   // console.log("user from userState",user)
