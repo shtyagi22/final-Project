@@ -9,7 +9,7 @@ const getAllPosts = () => {
 
 const createPosts = (text,userId,image) => {
   console.log("userparams from createPosts:", text,userId,image);
-  return db.query("INSERT INTO posts (post_text, image, user_id) VALUES ($1, $2, $3) returning ", [text,image,userId])
+  return db.query("INSERT INTO posts (post_text, image, user_id) VALUES ($1, $2, $3) returning *", [text,image,userId])
     .then(data => {
       console.log("createPosts data.rows:", data.rows[0]);
       return data.rows[0];
