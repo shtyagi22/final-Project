@@ -8,8 +8,10 @@ const usersRouter = require('./routes/users');
 const commentsRouter = require('./routes/comments');
 const postsRouter = require('./routes/posts');
 const postCommentsRouter = require('./routes/postComments');
-const recipeRouter = require('./routes/recipe')
-const ingredientsRouter = require('./routes/ingredients')
+const recipeRouter = require('./routes/recipe');
+const ingredientsRouter = require('./routes/ingredients');
+const likesRouter = require('./routes/likes')
+
 
 
 
@@ -34,6 +36,8 @@ app.use('/posts', postsRouter);
 app.use('/postComments', postCommentsRouter);
 app.use('/recipe', recipeRouter);
 app.use('/ingredients', ingredientsRouter);
+app.use('/likes', likesRouter);
+
 
 
 app.use(express.static('public'));

@@ -1,8 +1,8 @@
 -- schema/04_create_recipes.sql
-DROP TABLE IF EXISTS recipes CASCADE;
+DROP TABLE IF EXISTS likes CASCADE;
 -- CREATE USERS
-CREATE TABLE recipes (
+CREATE TABLE likes (
   id SERIAL PRIMARY KEY,
- likes INTEGER,
-user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+user_id INTEGER,
+recipe_id VARCHAR(255)--REFERENCES users(id) ON DELETE CASCADE
 );
