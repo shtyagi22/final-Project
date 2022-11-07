@@ -146,9 +146,8 @@ function App() {
 
   }
   const handlePosts = (newPost) => {
-
-    const filename = newPost.postImage.name
-    const file = newPost.postImage;
+    
+    const file = newPost?.postImage;
     const text = newPost.postMessage
 
     const formData = new FormData();

@@ -1,0 +1,29 @@
+.nutrition{
+  width: 120px;
+  height: 120px;
+  background-color:  #f8cab3;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+  margin: 10px;
+}
+.nutrients_list{
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+}
+// .nutrition .quantity{
+//   width: 150px;
+//   margin-top: 75px;
+//   height: 75px;
+//   background-color:  #fbb997;
+//   border-bottom-left-radius: 150px;
+//   border-bottom-right-radius: 150px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex-direction: column;
+// }

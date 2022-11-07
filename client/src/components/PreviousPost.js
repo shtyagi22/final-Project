@@ -1,7 +1,7 @@
 import './PreviousPost.scss'
 import {useState} from 'react'
 import { Link } from 'react-router-dom'
-import TimeAgo from 'timeago-react';
+import TimeAgo from 'timeago-react'
 
 function PreviousPost(props){
 

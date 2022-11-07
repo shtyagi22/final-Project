@@ -36,10 +36,10 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage }).single('photo')
 
 router.post('/', upload, (req, res) => {
-  console.log("req.file.path", req.file.path)
+  // console.log("req.file.path", req.file.path)
   console.log("req.body.text", req.body.text)
   console.log("req.body.userId", req.body.userId)
-  posts.createPosts(req.body.text, req.body.userId, req.file.path)
+  posts.createPosts(req.body.text, req.body.userId, req.file?.path)
     .then(data => {
       console.log("data returned from createComments:", data)
     });

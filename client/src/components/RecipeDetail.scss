@@ -1,12 +1,14 @@
 .recipe_detail_container{
   display: flex;
   flex-direction: column;
-  width: 900px;
+  width: 1200px;
   justify-content: center;
+  align-content: center;
+  align-items: center;
 }
 
 .recipe_detail_container header{
-  max-width: 900px;
+  max-width: 1100px;
   border-bottom:1px solid  rgb(212, 209, 209);
 }
 
@@ -34,9 +36,13 @@
 .recipe_detail_container .right_side_picture img{
   border-radius: 10px;
   width: 450px;
-
   margin-bottom: 60px;
 }
+
+.recipe_detail_container .right_side_picture{
+  margin-left: 100px;
+}
+
 .left_side_overview .details_calories_cooktime{
   display: flex;
   flex-direction: row;
@@ -70,19 +76,7 @@
   text-align: center;
 }
 
-.left_side_overview a{
- display: block;
- margin-top: 30px;
- background-color: rgba(58,131,120,255);
- width: 200px;
- text-align: center;
- padding-top: 8px;
- height: 40px;
- 
- text-decoration: none;
- color: white;
- border-radius: 20px;
-}
+
 
 .recipe_detail_container main{
   margin-top: 50px;
@@ -113,4 +107,29 @@ main .recipe_reviews .review_span{
   margin-bottom: 20px;
   font-size: 25px;
 }
+.direction_to_recipe_webesite a{
+  display: block;
+  margin-top: 30px;
+  background-color: #e16120;
+  width: 200px;
+  text-align: center;
+  padding-top: 8px;
+  height: 40px;
+  
+  text-decoration: none;
+  color: white;
+  border-radius: 20px;
+  margin-bottom: 30px;
+}
+.social_media_share a{
+  color: #e16120;;
+}
 
+.social_media_share{
+  margin-top: 100px;
+  margin-left: 100px;
+}
+
+.social_media_share a:hover{
+  color: rgb(29 161 242)
+}

@@ -3,7 +3,7 @@ import {useState,useEffect} from "react"
 import PreviousPostItems from "./PreviousPostItems"
 import Navigation from "./Navigation"
 import axios from 'axios';
-import TimeAgo from 'timeago-react';
+
 
 function Feeds (props){
 
@@ -27,7 +27,7 @@ function Feeds (props){
 
         axios.get(`/posts/${user_id}`).then((res)=>{
           console.log("from feeds", res.data)
-          setPosts(res.data)
+          setPosts(res.data.reverse())
         })
     
   },[])
@@ -36,7 +36,7 @@ function Feeds (props){
     const newPost = {
       id: posts[0].id,
       post_text:post.text,
-      image:post.filepath,
+      image:post?.filepath,
       fullname:posts[0].fullname,
       profile_image:posts[0].profile_image
     }

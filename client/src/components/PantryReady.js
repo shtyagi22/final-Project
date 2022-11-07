@@ -11,34 +11,12 @@ function PantryReady(props){
 
   useEffect(()=>{
     axios.get('/ingredients').then((res)=>{
+      console.log("ingredients from server", res.data)
       setIngredients_array(res.data)
     })
 
   },[])
   const[ingredients_array,setIngredients_array] = useState([])
-  // const ingredients_array = [
-  //   {id:1,ingredient:"Rice"},
-  //   {id:2,ingredient:"Apple Juice"},
-  //   {id:3,ingredient:"Orange"},
-  //   {id:4,ingredient:"carrot"},
-  //   {id:5,ingredient:"Navy Beans"},
-  //   {id:6,ingredient:"Beans"},
-  //   {id:7,ingredient:"Basmatic Rice"},
-  //   {id:8,ingredient:"Milk"},
-  //   {id:9,ingredient:"Suasage"},
-  //   {id:10,ingredient:"Beef Sausage"},
-  //   {id:11,ingredient:"Tomato puree"},
-  //   {id:12,ingredient:"Chicken Broth"},
-  //   {id:13,ingredient:"Beef broth"},
-  //   {id:14,ingredient:"Lobster"},
-  //   {id:15,ingredient:"Bread"},
-  //   {id:16,ingredient:"Breadcrumbs"},
-  //   {id:17,ingredient:"Cheese"},
-  //   {id:18,ingredient:"Mozerella Cheese"},
-  //   {id:19,ingredient:"Chedda Cheese"},
-  //   {id:20,ingredient:"Pepperoni"},
-  //   {id:21,ingredient:"Olive oil"},
-  // ]
   const [showResults, setShowResults] = useState(false)
   const [input, setInput] = useState('')
   const [ingredients, setIngredients] = useLocalStorage("ingredients", [])
@@ -102,7 +80,7 @@ function PantryReady(props){
         <div className="pantry_ready">
           <section>
             <h1>Cook with what you have</h1>
-            <p>Don't want to go to the store? No problem! Enter the ingredients you have on hand, and we'll show you recipes you could make. For best results, enter 10 or more ingredients below, including staples like salt, pepper, and olive oil. The ingredients you add here will be used to make a search in our recipe database to give ideas of delicious recipes to cook.</p>
+            <p>Don't want to go to the store? No problem! Enter the ingredients you have on hand, and we'll show you recipes you could make. For best results, enter ingredients, including staples like salt, pepper, and olive oil. The ingredients you add here will be used to make a search in our recipe database to give ideas of delicious recipes to cook.</p>
           </section>
           <section className="pantry_search_container">
             {!showResults &&

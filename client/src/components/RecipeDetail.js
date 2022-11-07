@@ -7,7 +7,10 @@ import Navigation from "./Navigation"
 import { useEffect, useState } from "react"
 import axios from "axios"
 
-
+import ShareLink from 'react-twitter-share-link'
+import ShareLinkF from 'react-facebook-share-link'
+import NutritionItem from "./NutritionItem"
+import NutritionListItem from "./NutritionListItem"
 
 function RecipeDetail(props){
 
@@ -23,16 +26,32 @@ function RecipeDetail(props){
       axios.get(`/comments/${id}`)
     ])
     .then((all)=>{
-      // console.log("inside useeffect",res.data.hits[0])
+      console.log("inside useeffect",all[1].data.hits)
       setRecipe(all[0].data.hits[0].recipe)
-      setComments(all[1].data)
+      setComments(all[1].data.reverse())
     }).catch((err)=>{
       console.log(err)
     })
   },[])
 
+  const nutrients = ['Sodium','Fat','Protein','Carbs', 'Fiber', 'Sugar','Cholesterol']
 
+  let quantityOfNutrients = [];
+  
+  for(const item of nutrients){
+    for (const key in recipe.totalNutrients){
+      if(recipe.totalNutrients[key].label === item){
+        const nutrientsFromRecipe ={item:"",quantity:0, unit:""}
+        nutrientsFromRecipe.item = item
+        nutrientsFromRecipe.quantity = recipe.totalNutrients[key].quantity
+        nutrientsFromRecipe.unit = recipe.totalNutrients[key].unit
+        quantityOfNutrients.push(nutrientsFromRecipe)
+          
+      }
+    }
+  }
 
+  console.log(quantityOfNutrients)
 
   // useEffect(()=>{
   //   axios.get(`/comments/${id}`).then((res)=>{
@@ -51,7 +70,7 @@ function RecipeDetail(props){
    const newcomment = {id: 14,
     comment_text: comment.comment,
     rating: comment.rating,
-    created_at: Date.now().toLocaleString() ,
+    created_at:Date.now(),
     api_recipe: comment.recipeId,
     user_id: user.id,
     fullname: user.fullname,
@@ -75,7 +94,12 @@ function RecipeDetail(props){
               <div className="header_container">
                 <div className="left_side_overview">
                   <span className="recipe_name">{recipe.label}</span>
-                  <span className="recipe_owner">{recipe.source}</span>
+                  <span className="recipe_owner">
+
+
+
+                  
+                  </span>
                   <div className="details_calories_cooktime">
                     <div className="div_no_ing">
                       <span className="no_ing">{recipe.ingredientLines?.length}</span>
@@ -90,8 +114,19 @@ function RecipeDetail(props){
                       <span>calories</span>
                     </div>
                   </div>
-                  <div>
-                    <a href={recipe.url}>Read Directions</a>
+                  <div className="social_media_share">
+                  <ShareLink link={window.href}>
+                    {link => (
+                        <a href={link} target='_blank'><i class="fa-brands fa-twitter fa-5x" ></i></a>
+                    )}
+                  </ShareLink>
+
+                  
+                      <ShareLinkF link={window.href}>
+                      {link => (
+                         <a href={link} target='_blank'><i class="fa-brands fa-facebook fa-5x"></i></a>
+                      )}
+                   </ShareLinkF>
                   </div>
                 </div>
                 <div className="right_side_picture">
@@ -99,15 +134,18 @@ function RecipeDetail(props){
                 </div>
               </div>
             </header>
+            <div className="recipe_description">
+                <NutritionListItem nutrients={quantityOfNutrients}/>
+              </div>
             <main>
               
-              <div className="recipe_description">
-              <span>Description</span>
-              <p>{}</p>
-              </div>
+           
               <div className="recipe_ingredients">
               <span className="ingds_span">Ingredients</span>
               <RecipeIngredients ingredients={recipe.ingredientLines}/>
+              </div>
+              <div className="direction_to_recipe_webesite">
+                    <a href={recipe.url}>Read Details</a>
               </div>
               <div className="add_to_shopping_cart">
     
