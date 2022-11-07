@@ -41,7 +41,7 @@ function Feeds (props){
       profile_image:posts[0].profile_image
     }
     console.log("Newpost issues",newPost)
-    setPosts([...posts,newPost].reverse())
+    setPosts([newPost,...posts])
   }
     
 

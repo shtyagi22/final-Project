@@ -13,11 +13,14 @@ function Navigation(){
   return(
     <main className="layout">
       <section className="sidebar">
-      <img
+        <Link to="/">
+        <img
             className="sidebar--centered"
             src="//localhost:8080/final_logo.png"
             alt="final_logo"
           />
+        </Link>
+
         {user &&
         <div className="user">
           

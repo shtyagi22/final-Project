@@ -21,6 +21,7 @@ import PreviousPost from './PreviousPost';
 import useLocalStorage from '../hooks/LocalStorageHook';
 import Navigation from './Navigation';
 import PostAndReplies from './PostAndReplies';
+import CheckoutItem from './CheckoutItem';
 
 
 function App() {
@@ -182,6 +183,7 @@ function App() {
             onComment={handleComment} comments={comments}/>}/>
 
           <Route path='/posts/:id' element={<PostAndReplies handlePostReplies={handlePostReplies}/>} />
+          <Route path='/cart' element={<CheckoutItem/>}/>
         </Routes>
       </BrowserRouter>
     </>
