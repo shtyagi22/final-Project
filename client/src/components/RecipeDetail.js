@@ -58,19 +58,6 @@ function RecipeDetail(props){
 
   console.log(quantityOfNutrients)
 
-  // useEffect(()=>{
-  //   axios.get(`/comments/${id}`).then((res)=>{
-  //     return res
-  //   })
-  // },[])
-
-
-
-  // const recipe = props.recipes.find((e)=> e.recipe.uri.substring(51)===id).recipe
-  // const recipec = props.recipes.find((e)=> e.recipe.uri.substring(51)===id)
-  // console.log("props things",recipec)
-  // console.log('state things', recipeI)
-
   const updateComments =(comment) =>{
    const newcomment = {id: 14,
     comment_text: comment.comment,
