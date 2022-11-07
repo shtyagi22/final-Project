@@ -82,7 +82,7 @@ function PreviousPost(props){
               <div className='comment_icon_count'>
                 <i class="fa-regular fa-comment"></i>
                 <span className='num_of_likes'>
-                  5
+                  
                 </span>
               </div>
               {like === 0 && <i class="fa-regular fa-heart" onClick={addLike}></i>}

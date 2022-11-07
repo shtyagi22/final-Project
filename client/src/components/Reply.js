@@ -56,7 +56,7 @@ function Reply(props){
           } */}
 
           <div className='like_comments'>
-              <div className='comment_icon_count'>
+              {/* <div className='comment_icon_count'>
                 <i class="fa-regular fa-comment"></i>
                 <span className='num_of_likes'>
                   5
@@ -69,7 +69,7 @@ function Reply(props){
                   {like}
                 </span>
               </>}
-     
+      */}
           </div>
         </div>
       </section>

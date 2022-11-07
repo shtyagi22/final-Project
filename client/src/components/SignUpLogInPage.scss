@@ -3,8 +3,15 @@
   width: 200px;
   height: 200px;
   z-index: 15;
-  top: 20%;
-  left: 50%;
+  top: 35%;
+  left: 45%;
+}
+
+.greeting{
+  position: absolute;
+  top: 27%;
+  left: 40%;
+  text-align: center;
 }
 .signin_login{
   display: flex;

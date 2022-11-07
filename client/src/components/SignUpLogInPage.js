@@ -42,8 +42,11 @@ function SignUpLogInPage(props){
 
   { transition &&
   <>
+  <div className='greeting'>
   <h1>How shall we greet you?</h1>
+  </div>
     <div className='login_container'> 
+    
     <form className="signin_login" onSubmit={e => e.preventDefault()}>
       
       <div>

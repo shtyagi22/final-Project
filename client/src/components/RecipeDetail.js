@@ -118,7 +118,7 @@ function RecipeDetail(props){
                     <span>Minutes</span>
                   </div>
                   <div className="div_cal">
-                    <span className="cal">{Math.round(recipe.calories)}</span>
+                    <span className="cal">{Math.round(recipe.calories/10)}</span>
                     <span>calories</span>
                   </div>
                 </div>

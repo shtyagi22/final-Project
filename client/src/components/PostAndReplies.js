@@ -66,7 +66,7 @@ const updateReplies = (replies) =>{
       <main>
         <div>
         
-        <SinglePost post={post}/>
+        <SinglePost post={post} replies={replies.length}/>
         </div>
         <div>
           <ReplyToPost handlePostReplies={props.handlePostReplies} updateReplies={updateReplies} postId={id}/>

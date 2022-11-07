@@ -18,7 +18,7 @@ function RecipeCard(props){
                 <span>{props.recipe?.dishType[0]}</span>
               </div>
               <div className="calories_per_recipe">
-                <span>{Math.round(props.recipe?.calories)}</span>
+                <span>{Math.round(props.recipe?.calories/10)}</span>
                 <span>kcal</span>
               </div>
             </div>
