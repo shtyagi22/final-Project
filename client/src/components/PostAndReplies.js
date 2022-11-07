@@ -16,20 +16,6 @@ function PostAndReplies(props){
   const [post, setPost] = useState({})
   const [replies, setReplies] =useState([])
 
-  // useEffect(()=>{
-  //   axios.get(`/posts/postreplies/${id}`).then((res)=>{
-  //     console.log(res.data)
-  //     setPost(res.data[0])
-  //   })
-  // },[])
-
-  //   useEffect(()=>{
-  //   axios.get(`/postComments/${id}`).then((res)=>{
-  //     console.log(res.data)
-  //     setReplies(res.data)
-  //   })
-  // },[])
-
   useEffect(()=>{
     
     Promise.all([
@@ -42,15 +28,7 @@ function PostAndReplies(props){
     })
   },[])
 
-/**
- *{
-    id: 3,
-    post_text: 'ae are still testing',
-    image: 'public/1667706367212-IG1C11_Roast-Turkey.jpeg',
-    user_id: 1
-  }
- * 
- */
+
   console.log("Lets.......................",post)
 
 const updateReplies = (replies) =>{
@@ -66,7 +44,7 @@ const updateReplies = (replies) =>{
       <main>
         <div>
         
-        <SinglePost post={post}/>
+        <SinglePost post={post} replies={replies.length}/>
         </div>
         <div>
           <ReplyToPost handlePostReplies={props.handlePostReplies} updateReplies={updateReplies} postId={id}/>

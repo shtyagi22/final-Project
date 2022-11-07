@@ -42,19 +42,23 @@ function LoginOptions(props){
   }
 
   return(
-    <div className='siginup_options_container'>
-      <div className='singin_into'>
-        <span>Your recipes are waiting</span>
+    <div className='signup_options_container'>
+      <div className='signin_intro'>
+        <img
+            className="sidebar--centered"
+            src="//localhost:8080/final_logo.png"
+            alt="final_logo"
+          />
+        <span>Your recipes are waiting...</span>
       </div>
       <div id='signInDiv'>
       </div>
       <Link  to='/signin' className='login_with_email'>
-       <div className='mail_icon_circle'>
-       <i class="fa-solid fa-envelope"></i>
-       </div>
-       <span>login with email</span>
+        <div className='mail_icon_circle'>
+        <i class="fa-solid fa-envelope"></i>
+        </div>
+        <span>login with email</span>
       </Link>
-
     </div>
   )
 }

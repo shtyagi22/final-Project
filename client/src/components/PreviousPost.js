@@ -8,27 +8,7 @@ function PreviousPost(props){
   const user = JSON.parse(localStorage.getItem('user'))
 
   console.log("user in PreviousPost", user)
-      /*
-  {
-    id: 1,
-    post_text: 'ae are still testing',
-    image: 'public/1667706367212-IG1C11_Roast-Turkey.jpeg',
-    user_id: 1,
-    fullname: 'ekene ezeani',
-    profile_image: 'https://lh3.googleusercontent.com/a/ALm5wu1_-dgWtl7-p3AMWUcgUpYnJAV_zG0iMe59OOaH=s96-c'
-  }
-    
-    */
 
-  /**
- *{
-    id: 3,
-    post_text: 'ae are still testing',
-    image: 'public/1667706367212-IG1C11_Roast-Turkey.jpeg',
-    user_id: 1
-  }
- * 
- */
 
   const [like, setLike] =  useState(0)
 
@@ -82,7 +62,7 @@ function PreviousPost(props){
               <div className='comment_icon_count'>
                 <i class="fa-regular fa-comment"></i>
                 <span className='num_of_likes'>
-                  5
+                  
                 </span>
               </div>
               {like === 0 && <i class="fa-regular fa-heart" onClick={addLike}></i>}

@@ -1,0 +1,71 @@
+.checkout_item_container{
+  width: 100%;
+}
+
+.ingredient_measurement_and_name span{
+  display: block;
+}
+
+
+tr .ingredient_measurement_and_name{
+  width: 700px;
+  height: 60px;
+}
+tr .ingredient_quantity{
+  width: 70px;
+}
+
+tr .ingredient_pic{
+  width: 100px;
+}
+tr .fa-trash{
+  width: 40px;
+  color: #e16120;
+}
+.ingredient_pic img{
+  width: 50px;
+  border-radius: 4px;
+}
+
+.ingredient_pic img:hover{
+  transform: scale(2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+tr .delete_item{
+
+  align-items: center;
+}
+
+.intacart_logo{
+  width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+.intacart_logo img{
+  width: 100px;
+  border-bottom: 2px solid #e16120;
+}
+
+.share_and_add_to_cart button{
+  background-color: #e16120;
+  border: none;
+  margin: 10px;
+}
+
+.share_and_add_to_cart button:hover{
+  background-color: #e7a889;
+  border: none;
+}
+
+.share_and_add_to_cart{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-body span{
+  display: block;
+  color: #e16120;
+}

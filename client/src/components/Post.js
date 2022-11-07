@@ -57,7 +57,7 @@ function Post(props){
       </div>
       <form>
         <div className="new_post_text">
-          <textarea placeholder="What's cooking?" value={inputStr}
+          <textarea placeholder="What's cooking..." value={inputStr}
           onChange={event=>setInputStr(event.target.value)}></textarea>
           
           {

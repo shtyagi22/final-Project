@@ -125,6 +125,10 @@ main .recipe_reviews .review_span{
   color: #e16120;;
 }
 
+.direction_to_recipe_webesite a:hover{
+  color: white;
+}
+
 .social_media_share{
   margin-top: 100px;
   margin-left: 100px;
@@ -132,4 +136,16 @@ main .recipe_reviews .review_span{
 
 .social_media_share a:hover{
   color: rgb(29 161 242)
+}
+
+.add_to_shopping_cart button{
+
+  margin-top: 30px;
+  background-color: #e16120;
+  width: 200px;
+  height: 40px;
+  border: none;
+  color: white;
+  border-radius: 20px;
+  margin-bottom: 30px;
 }

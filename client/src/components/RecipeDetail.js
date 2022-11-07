@@ -9,13 +9,15 @@ import axios from "axios"
 
 import ShareLink from 'react-twitter-share-link'
 import ShareLinkF from 'react-facebook-share-link'
-import NutritionItem from "./NutritionItem"
 import NutritionListItem from "./NutritionListItem"
+import CheckoutListItem from "./CheckoutListItem"
 
 function RecipeDetail(props){
 
  const [recipe, setRecipe] = useState({})
  const [comments, setComments] = useState([])
+ const [transition, setTransition] = useState(false)
+ const [cart,setCart] = useState([]);
 
   const user= JSON.parse(localStorage.getItem("user"))
   
@@ -28,11 +30,14 @@ function RecipeDetail(props){
     .then((all)=>{
       console.log("inside useeffect",all[1].data.hits)
       setRecipe(all[0].data.hits[0].recipe)
+      setCart(all[0].data.hits[0].recipe.ingredients)
       setComments(all[1].data.reverse())
     }).catch((err)=>{
       console.log(err)
     })
   },[])
+
+
 
   const nutrients = ['Sodium','Fat','Protein','Carbs', 'Fiber', 'Sugar','Cholesterol']
 
@@ -53,19 +58,6 @@ function RecipeDetail(props){
 
   console.log(quantityOfNutrients)
 
-  // useEffect(()=>{
-  //   axios.get(`/comments/${id}`).then((res)=>{
-  //     return res
-  //   })
-  // },[])
-
-
-
-  // const recipe = props.recipes.find((e)=> e.recipe.uri.substring(51)===id).recipe
-  // const recipec = props.recipes.find((e)=> e.recipe.uri.substring(51)===id)
-  // console.log("props things",recipec)
-  // console.log('state things', recipeI)
-
   const updateComments =(comment) =>{
    const newcomment = {id: 14,
     comment_text: comment.comment,
@@ -78,100 +70,103 @@ function RecipeDetail(props){
     password: null,
     image: user.image
   }
-
- 
-
     setComments([newcomment,...comments])
   }
-    return(
-   
-      <main className="layout">
-        <Navigation/>
-        <section className="main_side">
+  
+  return(
+  
+    <main className="layout">
+      <Navigation/>
+      <section className="main_side">
+        {transition &&
+          <CheckoutListItem ingredients={cart}/>
+        }
+        {!transition && 
+          
           <div className="recipe_detail_container">
-            
-            <header>
-              <div className="header_container">
-                <div className="left_side_overview">
-                  <span className="recipe_name">{recipe.label}</span>
-                  <span className="recipe_owner">
+          
+          <header>
+            <div className="header_container">
+              <div className="left_side_overview">
+                <span className="recipe_name">{recipe.label}</span>
+                <span className="recipe_owner">
 
 
 
-                  
-                  </span>
-                  <div className="details_calories_cooktime">
-                    <div className="div_no_ing">
-                      <span className="no_ing">{recipe.ingredientLines?.length}</span>
-                      <span>Ingredients</span>
-                    </div>
-                    <div className="div_time">
-                      <span className="time">{recipe.totalTime}</span>
-                      <span>Minutes</span>
-                    </div>
-                    <div className="div_cal">
-                      <span className="cal">{Math.round(recipe.calories)}</span>
-                      <span>calories</span>
-                    </div>
+                
+                </span>
+                <div className="details_calories_cooktime">
+                  <div className="div_no_ing">
+                    <span className="no_ing">{recipe.ingredientLines?.length}</span>
+                    <span>Ingredients</span>
                   </div>
-                  <div className="social_media_share">
-                  <ShareLink link={window.href}>
+                  <div className="div_time">
+                    <span className="time">{recipe.totalTime}</span>
+                    <span>Minutes</span>
+                  </div>
+                  <div className="div_cal">
+                    <span className="cal">{Math.round(recipe.calories/10)}</span>
+                    <span>calories</span>
+                  </div>
+                </div>
+                <div className="social_media_share">
+                <ShareLink link={window.href}>
+                  {link => (
+                      <a href={link} target='_blank'><i class="fa-brands fa-twitter fa-5x" ></i></a>
+                  )}
+                </ShareLink>
+
+                
+                    <ShareLinkF link={window.href}>
                     {link => (
-                        <a href={link} target='_blank'><i class="fa-brands fa-twitter fa-5x" ></i></a>
+                        <a href={link} target='_blank'><i class="fa-brands fa-facebook fa-5x"></i></a>
                     )}
-                  </ShareLink>
-
-                  
-                      <ShareLinkF link={window.href}>
-                      {link => (
-                         <a href={link} target='_blank'><i class="fa-brands fa-facebook fa-5x"></i></a>
-                      )}
-                   </ShareLinkF>
-                  </div>
-                </div>
-                <div className="right_side_picture">
-                  <img alt="food_pic" src={recipe.image}/>
+                  </ShareLinkF>
                 </div>
               </div>
-            </header>
-            <div className="recipe_description">
-                <NutritionListItem nutrients={quantityOfNutrients}/>
+              <div className="right_side_picture">
+                <img alt="food_pic" src={recipe.image}/>
               </div>
-            <main>
-              
-           
-              <div className="recipe_ingredients">
-              <span className="ingds_span">Ingredients</span>
-              <RecipeIngredients ingredients={recipe.ingredientLines}/>
-              </div>
-              <div className="direction_to_recipe_webesite">
-                    <a href={recipe.url}>Read Details</a>
-              </div>
-              <div className="add_to_shopping_cart">
-    
-              </div>
-              <div className="recipe_nutrition">
-    
-              </div>
-              <div className="recipe_reviews">
-                <span className="review_span">Reviews</span>
-                <AddComment onComment={props.onComment} recipeId={id} updateComments={updateComments}/>
-                <CommentItemList comments={comments}/> 
-              </div>
-              
-            </main>
-            <footer>
-              <div className="related_recipe">
-    
-              </div>
-              <div className="more_recipes_from_this_cook">
-    
-              </div>
-            </footer>
-          </div>
-        </section>
-      </main>
-    )
+            </div>
+          </header>
+          <div className="recipe_description">
+              <NutritionListItem nutrients={quantityOfNutrients}/>
+            </div>
+          <main>
+            
+          
+            <div className="recipe_ingredients">
+            <span className="ingds_span">Ingredients</span>
+            <RecipeIngredients ingredients={recipe.ingredientLines}/>
+            </div>
+            <div className="direction_to_recipe_webesite">
+                  <a href={recipe.url}>Read Details</a>
+            </div>
+            <div className="add_to_shopping_cart">
+              <button onClick={(e)=>setTransition(true)}><i class="fa-solid fa-cart-shopping"></i>Order Ingredients</button>
+            </div>
+            <div className="recipe_nutrition">
+  
+            </div>
+            <div className="recipe_reviews">
+              <span className="review_span">Reviews</span>
+              <AddComment onComment={props.onComment} recipeId={id} updateComments={updateComments}/>
+              <CommentItemList comments={comments}/> 
+            </div>
+            
+          </main>
+          <footer>
+            <div className="related_recipe">
+  
+            </div>
+            <div className="more_recipes_from_this_cook">
+  
+            </div>
+          </footer>
+        </div>}
+      </section>
+    </main>
+  )
 }
 
 export default RecipeDetail

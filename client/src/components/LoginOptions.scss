@@ -1,5 +1,5 @@
 
-.siginup_options_container{
+.signup_options_container{
   position: absolute;
   width: 400px;
   height: 400px;
@@ -53,12 +53,27 @@
 #signInDiv{
   margin-left: 100px;
 }
-.singin_into span{
+.signin_intro span{
   font-size: 28px;
 
+  display: block;
 }
-.singin_into{
+.signin_intro{
 
   text-align: center;
   margin-bottom: 50px;
+}
+
+.signup_options_container img{
+  width: 150px;
+
+  display: block;
+}
+.signin_intro{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 150px;
 }
