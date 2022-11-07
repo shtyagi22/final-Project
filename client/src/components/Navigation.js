@@ -1,4 +1,5 @@
 import "./App.scss"
+
 import SignUpLogInButton from "./SignUpLogInButton"
 import './Navigation.scss';
 import {Outlet,Link, NavLink} from 'react-router-dom'
@@ -12,16 +13,18 @@ function Navigation(){
   return(
     <main className="layout">
       <section className="sidebar">
-        <img
-          className="sidebar--centered"
-        
-          alt="finals logo"
-        />
-
+      <img
+            className="sidebar--centered"
+            src="//localhost:8080/final_logo.png"
+            alt="final_logo"
+          />
+        {user &&
         <div className="user">
+          
           <img alt="profile" src={user?.image}/>
           <span>{user?.fullname}</span>
         </div>
+        }
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
           <SignUpLogInButton/>
@@ -30,6 +33,8 @@ function Navigation(){
          
           <li className="nav-list__item"><NavLink to="/search_pantry_ingredients" preventScrollReset={true}>Pantry-Ready Recipe</NavLink></li>
           <li className="nav-list__item"><NavLink to="/feeds" preventScrollReset={true}>My feeds</NavLink></li>
+          <li className="nav-list__item"><NavLink to="/" preventScrollReset={true}>About Us</NavLink></li>
+          <li className="nav-list__item"><NavLink to="/" preventScrollReset={true}>Contact Us</NavLink></li>
           </ul>
         </nav>
       </section>

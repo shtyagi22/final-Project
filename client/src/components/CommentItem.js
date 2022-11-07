@@ -1,6 +1,8 @@
 
 import "./CommentItem.scss"
 
+import TimeAgo from 'timeago-react'
+
 function CommentItem(props){
 
   function getStars(rating) {
@@ -55,7 +57,14 @@ function CommentItem(props){
         </div>
         <div className="right-side">
           <div className="name_and_time">
-          <span>{props.comment.fullname}</span> <span className="time_ago">{props.comment.created_at}</span>
+          <span>{props.comment.fullname}</span> 
+          <span className="time_ago">
+          <TimeAgo
+                datetime={props.comment.created_at}
+                locale='en'
+            />
+            
+            </span>
           </div>
           <div>{getStars(props.comment.rating)}</div>
           <div className="comment_text">

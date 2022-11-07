@@ -14,6 +14,8 @@
     align-self: center;
   }
 
+
+
   &__separator {
     width: 90%;
     margin: $spacing 0;
@@ -38,6 +40,10 @@
   margin: 2rem 0;
   padding: 0 $spacing;
   width: 100%;
+}
+
+.sidebar img{
+  width: 150px;
 }
 
 .right_side_of_main {

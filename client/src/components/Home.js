@@ -18,10 +18,12 @@ function Home(props){
       <div className="recipe_suggestions">
         {showBox &&
         <div class="pantry_ready_or_inspiration" >
-        <div className="">
+        <div >
           <p>Looking for recipes you can make today without a trip to the store?</p> 
-         <Link to="/search_pantry_ingredients">Yes, find pantry ready recipe</Link>
+          <div className="button_link_align">
+            <Link to="/search_pantry_ingredients">Yes, find pantry ready recipe</Link>
           <button onClick={()=>setShowBox(false)}>No, I am looking for inspiration</button>
+          </div>
         </div>
       </div>
 

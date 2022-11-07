@@ -1,6 +1,7 @@
 import './PreviousPost.scss'
 import {useState} from 'react'
 import { Link } from 'react-router-dom'
+import TimeAgo from 'timeago-react'
 
 function PreviousPost(props){
 
@@ -60,7 +61,12 @@ function PreviousPost(props){
         </div>
         <div className="right-side">
           <div className="name_and_time">
-          <span>{props.post.fullname}</span> <span className="time_ago">3 days ago</span>
+          <span>{props.post.fullname}</span> <span className="time_ago">
+            <TimeAgo
+                datetime={props.post.created_at}
+                locale='en'
+            />
+          </span>
           </div>
           <div className="comment_text">
             {props.post.post_text}

@@ -1,6 +1,8 @@
 .card-body{
   font-weight:lighter;
-
+  font-family: 'Dancing Script', cursive;
+  width: 100%;
+  position: relative;
 }
 
 .indvidual_card{
@@ -26,4 +28,41 @@
 
 .recipe_source{
   text-transform: uppercase;
+}
+
+.recipe_list_item a{
+  text-decoration: none;
+  color: black;
+}
+
+.cuisine_type{
+  text-transform:capitalize;
+}
+
+.cusine_type_dish span{
+  display: block;
+}
+
+.calories_on_right{
+  display: flex;
+  flex-direction: row;
+}
+.calories_per_recipe{
+  position: absolute;
+  top:10;
+  right: 2px;
+  width: 60px;
+  border-radius: 50%;
+  height: 60px;
+  background-color:  #e16120;
+  margin-left: 40px;
+  text-align: center;
+  float: right;
+}
+
+.calories_per_recipe span{
+  // margin-left: 5px;
+  padding-top: 5px;
+  color: white;
+  display: block;
 }
